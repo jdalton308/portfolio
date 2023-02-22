@@ -1,0 +1,15 @@
+$desktop-bp: 1024px;
+$tablet-bp: 640px;
+
+
+@mixin desktopMedia {
+  @media (min-width: $desktop-bp) {
+    @content;
+  }
+}
+
+@mixin tabletMedia {
+  @media (min-width: $tablet-bp) {
+    @content;
+  }
+}

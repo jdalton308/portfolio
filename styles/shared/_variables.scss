@@ -1,0 +1,98 @@
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+
+  /*
+  Font family variables defined through @next/fonts import
+    Playfair Display: --playfair-font
+    Source Sans Pro: --source-sans-font
+  */
+
+  /* 
+  COLORS
+   */
+
+  /* Tokens */
+  --primary-20: #00382C;
+  --primary-40: #006B56;
+  --primary-80: #5DDBB9;
+  --primary-100: #FFF;
+
+  --secondary-20: #1D352D;
+  --secondary-40: #4B635B;
+  --secondary-80: #B2CCC2;
+  --secondary-90: #CEE9DD;
+  --secondary-100: #FFF;
+
+  --tertiary-20: #0E3446;
+  --tertiary-40: #416276;
+  --tertiary-80: #A8CBE2;
+  --tertiary-100: #FFF;
+
+  --neutral-10: #191C1B;
+  --neutral-80: #C4C7C4;
+  --neutral-90: #E1E3E0;
+  --neutral-99: #FBFDFA;
+
+  --neutral-variant-30: #3F4945;
+  --neutral-variant-50: #6F7975;
+  --neutral-variant-60: #89938E;
+  --neutral-variant-80: #BFC9C3;
+  --neutral-variant-90: #DBE5DF;
+
+
+  /* Theme */
+  --primary: var(--primary-40);
+  --on-primary: var(--primary-100);
+  --secondary: var(--secondary-40);
+  --on-secondary: var(--secondary-100);
+  --tertiary: var(--tertiary-40);
+  --on-tertiary: var(--tertiary-100);
+  --background: var(--neutral-99);
+  --on-background: var(--neutral-10);
+  --surface: var(--neutral-99);
+  --on-surface: var(--neutral-10);
+  --surface-variant: var(--neutral-variant-90);
+  --on-surface-variant: var(--neutral-variant-30);
+  --outline: var(--neutral-variant-50);
+
+  --surface: #FBFDFA;
+  --surface1: linear-gradient(0deg, rgba(0, 107, 86, 0.05), rgba(0, 107, 86, 0.05)), #FBFDFA;
+  --surface2: linear-gradient(0deg, rgba(0, 107, 86, 0.08), rgba(0, 107, 86, 0.08)), #FBFDFA;
+  --surface3: linear-gradient(0deg, rgba(0, 107, 86, 0.11), rgba(0, 107, 86, 0.11)), #FBFDFA;
+  --surface4: linear-gradient(0deg, rgba(0, 107, 86, 0.12), rgba(0, 107, 86, 0.12)), #FBFDFA;
+  --surface5: linear-gradient(0deg, rgba(0, 107, 86, 0.14), rgba(0, 107, 86, 0.14)), #FBFDFA;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark Theme */
+    --primary: var(--primary-80);
+    --on-primary: var(--primary-20);
+    --secondary: var(--secondary-80);
+    --on-secondary: var(--secondary-20);
+    --tertiary: var(--tertiary-80);
+    --on-tertiary: var(--tertiary-20);
+    --background: var(--neutral-10);
+    --on-background: var(--neutral-90);
+    --surface: var(--neutral-10);
+    --on-surface: var(--neutral-80);
+    --surface-variant: var(--neutral-variant-30);
+    --on-surface-variant: var(--neutral-variant-80);
+    --outline: var(--neutral-variant-60);
+
+    --surface: #191C1B;
+    --surface1: linear-gradient(0deg, rgba(93, 219, 185, 0.05), rgba(93, 219, 185, 0.05)), #191C1B;
+    --surface2: linear-gradient(0deg, rgba(93, 219, 185, 0.08), rgba(93, 219, 185, 0.08)), #191C1B;
+    --surface3: linear-gradient(0deg, rgba(93, 219, 185, 0.11), rgba(93, 219, 185, 0.11)), #191C1B;
+    --surface4: linear-gradient(0deg, rgba(93, 219, 185, 0.12), rgba(93, 219, 185, 0.12)), #191C1B;
+    --surface5: linear-gradient(0deg, rgba(93, 219, 185, 0.14), rgba(93, 219, 185, 0.14)), #191C1B;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
