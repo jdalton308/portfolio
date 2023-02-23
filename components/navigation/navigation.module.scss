@@ -37,10 +37,10 @@
 
 @keyframes top_bun {
   0% {
-    transform: translateY(-2px);
+    transform: translateY(-px);
   }
   40% {
-    transform: translateY(6px);
+    transform: translateY(8px);
   }
   100% {
     transform: translate(0px, 8px) rotate(135deg);
@@ -51,7 +51,7 @@
     transform: translateY(2px);
   }
   40% {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
   }
   100% {
     transform: translate(0px, -8px) rotate(-135deg);
@@ -92,7 +92,7 @@
     top: 50%;
     left: 0;
     display: block;
-    height: 4px;
+    height: 2px;
     width: 100%;
     background-color: var(--primary);
     transform-origin: 50% 50%;
@@ -121,10 +121,10 @@
   // &.burger_enter {}
   &.burger_enter_active {
     &:before {
-      animation: top_bun 0.7s var(--adjust-curve);
+      animation: top_bun 0.8s var(--burger-curve);
     }
     &:after {
-      animation: bottom_bun 0.7s var(--adjust-curve);
+      animation: bottom_bun 0.8s var(--burger-curve);
     }
   }
   &.burger_enter_done {
@@ -140,10 +140,10 @@
   // &.burger_exit {}
   &.burger_exit_active {
     &:before {
-      animation: top_bun 0.5s var(--adjust-curve) reverse;
+      animation: top_bun 0.8s var(--burger-curve) reverse;
     }
     &:after {
-      animation: bottom_bun 0.5s var(--adjust-curve) reverse;
+      animation: bottom_bun 0.8s var(--burger-curve) reverse;
     }
   }
   &.burger_exit_done {
@@ -240,9 +240,9 @@
   -webkit-background-clip: text;
   background-clip: text;
   background-image: linear-gradient(90deg, var(--primary) 50%, var(--primary-60));
-  background-size: 200% 100%;
+  background-size: 180% 100%;
   background-position: 0 50%;
-  transition: background-position 0.5s var(--adjust-curve);
+  transition: background-position 0.3s var(--adjust-curve);
 
   &:after {
     content: '';

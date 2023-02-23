@@ -4,6 +4,7 @@
   --border-radius: 12px;
 
   --adjust-curve: cubic-bezier(0.7, 0.03, 0.3, 0.97);
+  --burger-curve: cubic-bezier(0.9, 0.03, 0.1, 0.97);
   --enter-curve: cubic-bezier(0.05, 0.4, 0.14, 0.99);
   --hide-curve: cubic-bezier(0.68, 0.06, 0.3, 0.99);
 
@@ -62,11 +63,11 @@
   --on-surface-variant: var(--neutral-variant-30);
   --outline: var(--neutral-variant-50);
 
-  --surface1: linear-gradient(0deg, rgba(0, 107, 86, 0.05), rgba(0, 107, 86, 0.05)), #FBFDFA;
-  --surface2: linear-gradient(0deg, rgba(0, 107, 86, 0.08), rgba(0, 107, 86, 0.08)), #FBFDFA;
-  --surface3: linear-gradient(0deg, rgba(0, 107, 86, 0.11), rgba(0, 107, 86, 0.11)), #FBFDFA;
-  --surface4: linear-gradient(0deg, rgba(0, 107, 86, 0.12), rgba(0, 107, 86, 0.12)), #FBFDFA;
-  --surface5: linear-gradient(0deg, rgba(0, 107, 86, 0.14), rgba(0, 107, 86, 0.14)), #FBFDFA;
+  --surface1: linear-gradient(0deg, rgba(0, 107, 86, 0.05), rgba(0, 107, 86, 0.05));
+  --surface2: linear-gradient(0deg, rgba(0, 107, 86, 0.08), rgba(0, 107, 86, 0.08));
+  --surface3: linear-gradient(0deg, rgba(0, 107, 86, 0.11), rgba(0, 107, 86, 0.11));
+  --surface4: linear-gradient(0deg, rgba(0, 107, 86, 0.12), rgba(0, 107, 86, 0.12));
+  --surface5: linear-gradient(0deg, rgba(0, 107, 86, 0.14), rgba(0, 107, 86, 0.14));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,11 +87,11 @@
     --on-surface-variant: var(--neutral-variant-80);
     --outline: var(--neutral-variant-60);
 
-    --surface1: linear-gradient(0deg, rgba(93, 219, 185, 0.05), rgba(93, 219, 185, 0.05)), #191C1B;
-    --surface2: linear-gradient(0deg, rgba(93, 219, 185, 0.08), rgba(93, 219, 185, 0.08)), #191C1B;
-    --surface3: linear-gradient(0deg, rgba(93, 219, 185, 0.11), rgba(93, 219, 185, 0.11)), #191C1B;
-    --surface4: linear-gradient(0deg, rgba(93, 219, 185, 0.12), rgba(93, 219, 185, 0.12)), #191C1B;
-    --surface5: linear-gradient(0deg, rgba(93, 219, 185, 0.14), rgba(93, 219, 185, 0.14)), #191C1B;
+    --surface1: linear-gradient(0deg, rgba(93, 219, 185, 0.05), rgba(93, 219, 185, 0.05));
+    --surface2: linear-gradient(0deg, rgba(93, 219, 185, 0.08), rgba(93, 219, 185, 0.08));
+    --surface3: linear-gradient(0deg, rgba(93, 219, 185, 0.11), rgba(93, 219, 185, 0.11));
+    --surface4: linear-gradient(0deg, rgba(93, 219, 185, 0.12), rgba(93, 219, 185, 0.12));
+    --surface5: linear-gradient(0deg, rgba(93, 219, 185, 0.14), rgba(93, 219, 185, 0.14));
   }
 }
 

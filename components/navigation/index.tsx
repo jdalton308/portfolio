@@ -19,7 +19,7 @@ export default function Navigation() {
         <CSSTransition
           in={navIsOpen}
           nodeRef={burgerRef}
-          timeout={700}
+          timeout={800}
           classNames={{
             enter: s.burger_enter,
             enterActive: s.burger_enter_active,

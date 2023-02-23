@@ -18,3 +18,37 @@
     max-width: 1128px;
   }
 }
+
+.section {
+  padding-block: 32px;
+
+  @include bp.tabletMedia {
+    padding-block: 48px;
+  }
+
+  @include bp.desktopMedia {
+    padding-block: 80px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  column-gap: 16px;
+  row-gap: 24px;
+  width: 100%;
+
+  @include bp.tabletMedia {
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 20px;
+  }
+
+  @include bp.desktopMedia {
+    column-gap: 24px;
+    row-gap: 32px;
+  }
+}
+
+.wrapper_grid {
+  composes: wrapper grid;
+}

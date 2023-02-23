@@ -4,11 +4,13 @@
 @mixin header-font {
   font-family: var(--playfair-font);
   font-weight: 800;
+  color: var(--on-surface);
 }
 
 @mixin body-font {
   font-family: var(--source-sans-font);
   font-weight: 400;
+  color: var(--on-surface);
 }
 
 @mixin font-sizes($mobile-size, $desktop-size) {
@@ -25,6 +27,7 @@ h2,
 h3,
 h4 {
   @include header-font;
+  margin: 0 0 1em;
 }
 
 main,
