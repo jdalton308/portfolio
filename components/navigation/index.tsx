@@ -9,18 +9,34 @@ import s from './navigation.module.scss';
 export default function Navigation() {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const navRef = useRef(null);
+  const burgerRef = useRef(null);
 
   return (
     <header className={s.my_header}>
       <div className={s.header_wrapper}>
         <Logo />
 
-        <button
-          type="button"
-          className={`${s.hamburger} ${navIsOpen ? s.hamburger_open : ''}`}
-          aria-label="Open navigation menu"
-          onClick={(e) => setNavIsOpen(!navIsOpen)}
-        />
+        <CSSTransition
+          in={navIsOpen}
+          nodeRef={burgerRef}
+          timeout={700}
+          classNames={{
+            enter: s.burger_enter,
+            enterActive: s.burger_enter_active,
+            enterDone: s.burger_enter_done,
+            exit: s.burger_exit,
+            exitActive: s.burger_exit_active,
+            exitDone: s.burger_exit_done,
+          }}
+        >
+          <button
+            type="button"
+            ref={burgerRef}
+            className={`${s.hamburger} ${navIsOpen ? s.hamburger_open : ''}`}
+            aria-label="Open navigation menu"
+            onClick={(e) => setNavIsOpen(!navIsOpen)}
+          />
+        </CSSTransition>
       </div>
 
       <CSSTransition
