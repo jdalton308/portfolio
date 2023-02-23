@@ -1,0 +1,203 @@
+
+.my_header {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 0;
+
+  // for dev'
+  background-color: var(--surface);
+}
+
+.header_wrapper {
+  composes: wrapper from '@/styles/shared/layout.module.scss';
+  max-width: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes top_bun {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+  100% {
+    transform: translate(0px, 8px) rotate(135deg);
+  }
+}
+@keyframes bottom_bun {
+  0% {
+    transform: translateY(2px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translate(0px, -8px) rotate(-135deg);
+  }
+}
+
+
+.hamburger {
+  position: relative;
+  z-index: 3;
+  height: 44px;
+  width: 54px;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: var(--primary);
+    transform-origin: 50% 50%;
+    transition: transform 0.5s var(--adjust-curve);
+    border-radius: 1px;
+  }
+  &:before {
+    top: calc(50% - 8px);
+    animation: top_bun 0.7s var(--adjust-curve) reverse;
+  }
+  &:after {
+    top: calc(50% + 8px);
+    animation: bottom_bun 0.7s var(--adjust-curve) reverse;
+  }
+
+  &:hover {
+    &:before {
+      transform: translateY(-2px);
+    }
+    &:after {
+      transform: translateY(2px);
+    }
+  }
+
+  &.hamburger_open {
+    &:before {
+      animation: top_bun 0.7s var(--adjust-curve) forwards;
+    }
+    &:after {
+      animation: bottom_bun 0.7s var(--adjust-curve) forwards;
+    }
+  }
+}
+
+.navigation_panel {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 50vw;
+  // border-radius: 0 0 0 80vh;
+  box-shadow: 0 2px 24px -3px var(--outline);
+  background-color: var(--surface-variant);
+  // transform: translateX(100%); // prime the animation in
+  // transition: transform 0.5s 0.2s var(--hide-curve);
+  transform: translateX(100%);
+
+  &.nav_enter {
+    transform: translateX(100%);
+  }
+  &.nav_enter_active {
+    transform: translateX(0);
+    transition: transform 0.7s var(--enter-curve);
+
+    .nav_links {
+      opacity: 1;
+      transition: opacity 0.6s ease 0.6s;
+    }
+  }
+  &.nav_enter_done {
+    transform: translateX(0);
+
+    .nav_links {
+      opacity: 1;
+      transition: opacity 0.6s ease 0.6s;
+    }
+  }
+
+  &.nav_exit {
+    transform: translateX(0);
+    transition: transform 0.5s 0.2s var(--hide-curve);
+
+    .nav_links {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+  &.nav_exit_active {
+    transform: translateX(100%);
+  }
+  &.nav_exit_done {
+    transform: translateX(100%);
+
+  }
+}
+
+.nav_links {
+  composes: wrapper from '@/styles/shared/layout.module.scss';
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 90px;
+  text-align: right;
+  opacity: 0;
+}
+
+.nav_link {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0.3em;
+  font-size: 13vh;
+  line-height: 1.1em;
+  font-family: var(--playfair-font);
+  color: var(--primary);
+  overflow: hidden;
+
+  // Gradient animation
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(90deg, var(--primary) 50%, var(--primary-60));
+  background-size: 200% 100%;
+  background-position: 0 50%;
+  transition: background-position 0.5s var(--adjust-curve);
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 8%;
+    right: 0;
+    display: inline-block;
+    width: 90%;
+    height: .05em;
+    background-color: var(--primary);
+    background-image: linear-gradient(90deg, var(--primary), var(--primary-60));
+    transform: translateX(100%);
+    transition: transform 0.7s var(--enter-curve);
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-position: 100% 50%;
+
+    &:after {
+      transform: translateX(0);
+    }
+  }
+
+  &:last-child {
+    margin: 0;
+  }
+}

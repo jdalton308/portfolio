@@ -16,3 +16,14 @@ body {
   color: var(--on-background);
 }
 
+button {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+*:focus {
+  outline: 2px solid var(--primary-60);
+  outline-offset: 1px;
+}

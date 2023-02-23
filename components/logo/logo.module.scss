@@ -1,0 +1,12 @@
+.logo {
+  font-size: 48px;
+  font-family: var(--playfair-font);
+  line-height: 1.25em;
+
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: linear-gradient(135deg, var(--primary-80), var(--tertiary-40), var(--primary-80));
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+}

@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
+import Navigation from '../navigation';
+
 const playfairDisplay = Playfair_Display({
   weight: '800',
   subsets: ['latin'],
@@ -29,9 +31,7 @@ const Layout = ({ children }: any) => (
     </Head>
 
     <div className={`${playfairDisplay.variable} ${sourceSansPro.variable}`}>
-      <header>
-        header
-      </header>
+      <Navigation />
 
       <main>
         {children}

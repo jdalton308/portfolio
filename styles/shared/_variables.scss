@@ -3,6 +3,10 @@
   --max-width: 1100px;
   --border-radius: 12px;
 
+  --adjust-curve: cubic-bezier(0.45, 0.05, 0.18, 0.98);
+  --enter-curve: cubic-bezier(0.05, 0.4, 0.14, 0.99);
+  --hide-curve: cubic-bezier(0.68, 0.06, 0.3, 0.99);
+
   /*
   Font family variables defined through @next/fonts import
     Playfair Display: --playfair-font
@@ -16,6 +20,7 @@
   /* Tokens */
   --primary-20: #00382C;
   --primary-40: #006B56;
+  --primary-60: #00A485;
   --primary-80: #5DDBB9;
   --primary-100: #FFF;
 
@@ -57,7 +62,6 @@
   --on-surface-variant: var(--neutral-variant-30);
   --outline: var(--neutral-variant-50);
 
-  --surface: #FBFDFA;
   --surface1: linear-gradient(0deg, rgba(0, 107, 86, 0.05), rgba(0, 107, 86, 0.05)), #FBFDFA;
   --surface2: linear-gradient(0deg, rgba(0, 107, 86, 0.08), rgba(0, 107, 86, 0.08)), #FBFDFA;
   --surface3: linear-gradient(0deg, rgba(0, 107, 86, 0.11), rgba(0, 107, 86, 0.11)), #FBFDFA;
@@ -82,7 +86,6 @@
     --on-surface-variant: var(--neutral-variant-80);
     --outline: var(--neutral-variant-60);
 
-    --surface: #191C1B;
     --surface1: linear-gradient(0deg, rgba(93, 219, 185, 0.05), rgba(93, 219, 185, 0.05)), #191C1B;
     --surface2: linear-gradient(0deg, rgba(93, 219, 185, 0.08), rgba(93, 219, 185, 0.08)), #191C1B;
     --surface3: linear-gradient(0deg, rgba(93, 219, 185, 0.11), rgba(93, 219, 185, 0.11)), #191C1B;
