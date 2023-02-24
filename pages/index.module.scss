@@ -43,8 +43,10 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  background-color: var(--secondary);
   padding: 2.5rem;
+  background-color: var(--secondary);
+  background-size: cover;
+  background-position: center;
 
   &:nth-child(1) {
     grid-column: 1 / 3;
@@ -59,7 +61,12 @@
   }
 
   h3,
+  h4,
   .item_detail {
     color: var(--on-secondary);
+  }
+
+  h3 {
+    margin-bottom: 0;
   }
 }

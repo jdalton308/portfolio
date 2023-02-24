@@ -8,6 +8,10 @@ interface IHomeProps {
   featuredProjects: IProject[];
 }
 
+function projBackground(imgUrl: string) {
+  const overlayColor = 'rgba(75, 99, 91, 0.95)';
+  return `linear-gradient(${overlayColor}, ${overlayColor}), url(${imgUrl})`;
+} 
 
 export default function Home({ featuredProjects }: IHomeProps) {
   return (
@@ -24,59 +28,30 @@ export default function Home({ featuredProjects }: IHomeProps) {
           <h2>Featured Work</h2>
           <div className={s.featured_grid}>
 
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
+            { featuredProjects.map((proj) => (
+                <div
+                  key={proj.slug}
+                  className={s.grid_item}
+                  style={{
+                    backgroundImage: projBackground(proj.images[0].src),
+                  }}
+                >
+                  <div className={s.item_title}>
+                    <h3>
+                      { proj.title }
+                    </h3>
+                    <h4>
+                      { proj.subtitle }
+                    </h4>
+                  </div>
 
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
+                  <span className={s.item_detail}>
+                    { proj.features.join(' | ') }
+                  </span>
+                </div>
+              ))
+            }
 
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
-
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
-
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
-
-            <div className={s.grid_item}>
-              <h3>
-                Guac Hunter
-              </h3>
-              <span className={s.item_detail}>
-                Vanilla JS | Animation | Game
-              </span>
-            </div>
           </div>
         </div>
       </section>

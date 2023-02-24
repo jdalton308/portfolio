@@ -3,7 +3,7 @@
 
 @mixin header-font {
   font-family: var(--playfair-font);
-  font-weight: 800;
+  font-weight: 900;
   color: var(--on-surface);
 }
 
@@ -57,7 +57,8 @@ h3 {
 }
 
 h4 {
-  @include font-sizes(1.125rem, 1.25rem);
+  @include font-sizes(1rem, 1rem);
+  font-style: italic;
 }
 
 p {
