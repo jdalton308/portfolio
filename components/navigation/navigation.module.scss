@@ -69,6 +69,7 @@
   left: 0;
   width: 100%;
   padding: 16px 0;
+  pointer-events: none;
 }
 
 .header_wrapper {
@@ -84,6 +85,7 @@
   z-index: 3;
   height: 44px;
   width: 54px;
+  pointer-events: auto;
 
   &:before,
   &:after {
@@ -175,6 +177,7 @@
   box-shadow: 0 2px 24px -3px var(--outline);
   background-color: var(--surface-variant);
   transform: translateX(100%);
+  pointer-events: auto;
 
   &.nav_enter {
     transform: translateX(100%);

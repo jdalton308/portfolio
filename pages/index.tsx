@@ -32,7 +32,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
         </div>
       </section>
 
-      <section className={s.section_contact}>
+      <section className={s.section_contact}  id="contact">
         <div className={ls.wrapper}>
           <h2>Contact</h2>
           <div className={s.contact_item}>
@@ -53,28 +53,28 @@ export default function Home({ featuredProjects }: IHomeProps) {
                 target="_blank"
                 className={s.contact_icon}
               >
-                <IconCodepen className={s.contact_icon} />
+                <IconCodepen />
               </Link>
               <Link
                 href="https://www.github.com/jdalton308"
                 target="_blank"
                 className={s.contact_icon}
               >
-                <IconGithub className={s.contact_icon} />
+                <IconGithub />
               </Link>
               <Link
                 href="https://www.instagram.com/joeshmoedalton/"
                 target="_blank"
                 className={s.contact_icon}
               >
-                <IconInstagram className={s.contact_icon} />
+                <IconInstagram />
               </Link>
               <Link
                 href="https://www.linkedin.com/in/joedaltonweb"
                 target="_blank"
                 className={s.contact_icon}
               >
-                <IconLinkedin className={s.contact_icon} />
+                <IconLinkedin />
               </Link>
             </div>
           </div>
