@@ -1,10 +1,12 @@
-import { useState, useRef, MouseEvent as ReactMouseEvent } from 'react';
+import { useState, MouseEvent as ReactMouseEvent } from 'react';
+// @ts-ignore
+import throttle from 'lodash.throttle';
 import Link from 'next/link';
 
 import { IProject } from '@/data/projects';
 import s from './project-grid-card.module.scss';
 
-const MAX_ROTATION = 5;
+const MAX_ROTATION = 3;
 
 
 interface IProjectCardProps {
@@ -19,7 +21,6 @@ function cardBackground(imgUrl: string) {
 
 
 export default function ProjectGridCard({ project }: IProjectCardProps) {
-  const cardEl = useRef(null);
   const [xRot, setXRot] = useState(0);
   const [yRot, setYRot] = useState(0);
 
@@ -40,17 +41,21 @@ export default function ProjectGridCard({ project }: IProjectCardProps) {
     setXRot(xRot);
     setYRot(yRot);
   }
+
+  const throttledOnMousMove = throttle(onMouseMove, 100);
   
   function onMouseEnter(e: ReactMouseEvent) {
-    e.target.addEventListener('mousemove', onMouseMove as EventListener);
+    e.target.addEventListener('mousemove', throttledOnMousMove as EventListener);
     e.target.addEventListener('mouseleave', onMouseExit as EventListener);
   }
   
   function onMouseExit(e: MouseEvent) {
-    setXRot(0);
-    setYRot(0);
+    window.setTimeout(() => {
+      setXRot(0);
+      setYRot(0);
+    }, 150); // wait for throttle to clear
 
-    e.target?.removeEventListener('mousemove', onMouseMove as EventListener);
+    e.target?.removeEventListener('mousemove', throttledOnMousMove as EventListener);
     e.target?.removeEventListener('mouseleave', onMouseExit as EventListener);
   }
 

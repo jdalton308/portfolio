@@ -1,13 +1,13 @@
 import { StaticImageData } from 'next/image';
 
 interface ICategoryMap {
-  featured: 'featured',
-  sites: 'website',
-  interactive: 'interactive',
-  prototype: 'prototype',
-  dataViz: 'data-visualization',
-  react: 'react',
-  vue: 'vue',
+  featured: 'Featured',
+  sites: 'Website',
+  interactive: 'Interactive',
+  prototype: 'Prototype',
+  dataViz: 'Data Visualization',
+  react: 'React',
+  vue: 'Vue.js',
 }
 
 export interface IProject {
@@ -25,13 +25,13 @@ export interface IProject {
 
 
 export const categoryMap: ICategoryMap = {
-  featured: 'featured',
-  sites: 'website',
-  interactive: 'interactive',
-  prototype: 'prototype',
-  dataViz: 'data-visualization',
-  react: 'react',
-  vue: 'vue',
+  featured: 'Featured',
+  sites: 'Website',
+  interactive: 'Interactive',
+  prototype: 'Prototype',
+  dataViz: 'Data Visualization',
+  react: 'React',
+  vue: 'Vue.js',
 }
 
 // Images
