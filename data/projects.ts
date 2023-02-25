@@ -107,7 +107,7 @@ const projects: IProject[] = [
 
   {
     slug: 'unite-america-maps',
-    categories: [categoryMap.featured, categoryMap.interactive],
+    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.dataViz],
     title: 'Interactive Maps',
     subtitle: 'Unite America',
     url: '//www.unite-america.org',
@@ -130,7 +130,7 @@ const projects: IProject[] = [
 
   {
     slug: 'interactive-bill',
-    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.prototype],
+    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.prototype, categoryMap.dataViz],
     title: 'Interactive Bill',
     subtitle: 'Spectrum',
     features: [

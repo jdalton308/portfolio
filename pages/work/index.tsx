@@ -1,31 +1,32 @@
-import projectData, { categoryMap, IProject } from '@/data/projects';
+import projectData, { IProject, categoryMap } from '@/data/projects';
+import ProjectGrid from '@/components/project-grid';
 
-export async function getStaticPaths() {
-  const paths = projectData.map((proj) => ({
-    params: {
-      id: proj.slug
-    }
-  }));
+import s from './work.module.scss';
+import ls from '@/styles/shared/layout.module.scss';
 
+export async function getStaticProps() {
   return {
-    paths,
+    props: {
+      allProjects: projectData,
+    },
   }
 }
 
-export async function getStaticProps({ params }: any) {
-  const project = projectData.find((proj) => proj.slug === params.id);
-
-  return (project) ? {
-    props: { project },
-  } : {
-    notFound: true,
-  }
+interface IWorkProps {
+  allProjects: IProject[];
 }
 
-export default function Work({ project }: { project: IProject }) {
+export default function Work({
+  allProjects
+}: IWorkProps) {
+
+
   return (
-    <>
-      <h1>Work</h1>
-    </>
+    <div className={s.page_work}>
+      <div className={ls.wrapper}>
+        <h1>All Work</h1>
+        <ProjectGrid projects={allProjects} />
+      </div>
+    </div>
   );
 }

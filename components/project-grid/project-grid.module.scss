@@ -1,0 +1,6 @@
+.featured_grid {
+  composes: grid from '@/styles/shared/layout.module.scss';
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 248px;
+  perspective: 2000px;
+}

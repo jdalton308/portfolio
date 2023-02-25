@@ -1,14 +1,36 @@
-import { useRouter } from 'next/router'
+import projectData, { IProject } from '@/data/projects';
+import ls from '@/styles/shared/layout.module.scss';
 
-export default function ProjectPage() {
-  const router = useRouter();
-  const id = router.query.id as string;
+export async function getStaticPaths() {
+  const paths = projectData.map((proj) => ({
+    params: {
+      id: proj.slug
+    }
+  }));
 
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }: any) {
+  const project = projectData.find((proj) => proj.slug === params.id);
+
+  return (project) ? {
+    props: { project },
+  } : {
+    notFound: true,
+  }
+}
+
+
+export default function ProjectPage({ project }: { project: IProject }) {
   return (
     <div>
       Project page:
       <div>
-        {id}
+        {project.title}
       </div>
     </div>
   )
