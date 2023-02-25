@@ -35,6 +35,15 @@ export const categoryMap: ICategoryMap = {
 }
 
 // Images
+import welireg1 from './images/work/welireg/welireg1.webp';
+import welireg2 from './images/work/welireg/welireg2.webp';
+import welireg3 from './images/work/welireg/welireg3.webp';
+import welireg4 from './images/work/welireg/welireg4.webp';
+
+import uamap1 from './images/work/unite-america-maps/unite-maps1.webp';
+import uamap2 from './images/work/unite-america-maps/unite-maps2.webp';
+import uamap3 from './images/work/unite-america-maps/unite-maps3.webp';
+
 import tastyPic1 from './images/work/tastymade_desktop.jpg';
 import tastyPic2 from './images/work/tastymade_desktop2.jpg';
 import tastyPic3 from './images/work/tastymade_desktop3.jpg';
@@ -101,7 +110,10 @@ const projects: IProject[] = [
       'And as this website is for a drug, the biggest challenge was accommodating the regulatory review process, both internal and external of the client. This resulted in requirements around how "non-branded" pages appear, and specifics for how the "Indication" and "Safety Information" panels behaved.'
     ],
     images: [
-      tastyPic1,
+      welireg1,
+      welireg2,
+      welireg3,
+      welireg4,
     ],
   },
 
@@ -124,7 +136,9 @@ const projects: IProject[] = [
       'If viewing the live URL, the maps are present on the homepage, and then most of the Stategy pages.',
     ],
     images: [
-      tastyPic1,
+      uamap1,
+      uamap2,
+      uamap3,
     ],
   },
 
