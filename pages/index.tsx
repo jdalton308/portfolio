@@ -1,5 +1,11 @@
+import Link from 'next/link';
 import projectData, { categoryMap, IProject } from '@/data/projects';
 import ProjectGrid from '@/components/project-grid';
+
+import IconCodepen from '@/components/icons/codepen';
+import IconGithub from '@/components/icons/github';
+import IconInstagram from '@/components/icons/instagram';
+import IconLinkedin from '@/components/icons/linkedin';
 
 import s from './index.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
@@ -23,6 +29,55 @@ export default function Home({ featuredProjects }: IHomeProps) {
         <div className={ls.wrapper}>
           <h2>Featured Work</h2>
           <ProjectGrid projects={ featuredProjects }/>
+        </div>
+      </section>
+
+      <section className={s.section_contact}>
+        <div className={ls.wrapper}>
+          <h2>Contact</h2>
+          <div className={s.contact_item}>
+            <div className={s.contact_label}>
+              Email
+            </div>
+            <a href="mailto:joe@joedalton.io">
+              joe@joedalton.io
+            </a>
+          </div>
+          <div className={s.contact_item}>
+            <div className={s.contact_label}>
+              Other Outlets
+            </div>
+            <div>
+              <Link
+                href="https://www.codepen.io/rnrjd"
+                target="_blank"
+                className={s.contact_icon}
+              >
+                <IconCodepen className={s.contact_icon} />
+              </Link>
+              <Link
+                href="https://www.github.com/jdalton308"
+                target="_blank"
+                className={s.contact_icon}
+              >
+                <IconGithub className={s.contact_icon} />
+              </Link>
+              <Link
+                href="https://www.instagram.com/joeshmoedalton/"
+                target="_blank"
+                className={s.contact_icon}
+              >
+                <IconInstagram className={s.contact_icon} />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/joedaltonweb"
+                target="_blank"
+                className={s.contact_icon}
+              >
+                <IconLinkedin className={s.contact_icon} />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>
