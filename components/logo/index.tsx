@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 // @ts-ignore
 import throttle from 'lodash.throttle';
+import Link from 'next/link';
 import s from './logo.module.scss';
 
 
@@ -30,11 +31,12 @@ export default function Logo() {
 
 
   return (
-    <div
+    <Link
+      href="/"
       className={s.logo}
       style={{backgroundPosition: bgPosStyle}}
     >
       J.D.
-    </div>
+    </Link>
   )
 }

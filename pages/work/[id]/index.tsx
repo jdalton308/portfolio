@@ -51,6 +51,9 @@ export default function ProjectPage({ project }: { project: IProject }) {
               { project.title }
             </h1>
             <p className={s.header_details}>
+              { project.categories.join(' / ') }
+            </p>
+            <p className={s.header_details}>
               { project.date } / { project.duration }
             </p>
           </div>
@@ -59,7 +62,7 @@ export default function ProjectPage({ project }: { project: IProject }) {
             <h3>Features</h3>
             <ul>
               {project.features.map((feat) => (
-                  <li>
+                  <li key={feat}>
                     { feat }
                   </li>
                 ))
@@ -69,8 +72,11 @@ export default function ProjectPage({ project }: { project: IProject }) {
 
           <div className={s.project_section}>
             <h3>About</h3>
-            {project.about.map((para) => (
-                <p dangerouslySetInnerHTML={{__html: para}}></p>
+            {project.about.map((para, i) => (
+                <p
+                  key={i}
+                  dangerouslySetInnerHTML={{__html: para}}
+                />
               ))
             }
           </div>
@@ -90,6 +96,7 @@ export default function ProjectPage({ project }: { project: IProject }) {
         <div className={s.image_column}>
           { project.images.map((image, i) => (
               <Image
+                key={i}
                 src={image}
                 alt={`Screenshot number ${i + 1} of ${project.title}`}
                 className={s.project_image}

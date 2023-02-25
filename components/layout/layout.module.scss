@@ -1,3 +1,27 @@
-// .layout_main {
-//   padding-top: 92px;
-// }
+.corner_overlay {
+  composes: header_wrapper from '@/components/navigation/navigation.module.scss';
+
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 40px;
+  pointer-events: none;
+  color: var(--tertiary);
+
+  span {
+    font-size: 0.875rem;
+    pointer-events: auto;
+
+    &:last-child {
+      text-align: right;
+    }
+
+    a {
+      &:hover {
+        color: var(--primary);
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,7 +1,11 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
 import Navigation from '../navigation';
+import Footer from '../footer';
+
+
 import s from './layout.module.scss';
 
 const playfairDisplay = Playfair_Display({
@@ -31,16 +35,27 @@ const Layout = ({ children }: any) => (
       <meta name="robots" content="index, follow" />
     </Head>
 
-    <div className={`${playfairDisplay.variable} ${sourceSansPro.variable}`}>
+    <div className={`${sourceSansPro.className} ${playfairDisplay.variable} ${sourceSansPro.variable}`}>
       <Navigation />
 
       <main>
         {children}
       </main>
 
-      <footer>
-        footer
-      </footer>
+      <Footer />
+
+      <div className={s.corner_overlay}>
+        <span>Denver, CO, USA</span>
+        <span>
+          Independent Developer
+          <br/>
+          <Link
+            href="/#contact"
+          >
+            Available for work
+            </Link>
+        </span>
+      </div>
     </div>
   </>
 );

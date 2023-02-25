@@ -79,7 +79,7 @@ export default function ProjectGridCard({ project }: IProjectCardProps) {
       </div>
 
       <span className={s.item_detail}>
-        { project.features.join(' | ') }
+        { project.features.join(' / ') }
       </span>
     </Link>
   )
