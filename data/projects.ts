@@ -44,10 +44,30 @@ import uamap1 from './images/work/unite-america-maps/unite-maps1.webp';
 import uamap2 from './images/work/unite-america-maps/unite-maps2.webp';
 import uamap3 from './images/work/unite-america-maps/unite-maps3.webp';
 
+import start2 from './images/work/spectrum-start/spectrum-start2.webp';
+import start3 from './images/work/spectrum-start/spectrum-start3.webp';
+import start4 from './images/work/spectrum-start/spectrum-start4.webp';
+import start5 from './images/work/spectrum-start/spectrum-start5.webp';
+import start6 from './images/work/spectrum-start/spectrum-start6.webp';
+import start7 from './images/work/spectrum-start/spectrum-start7.webp';
+import start8 from './images/work/spectrum-start/spectrum-start8.webp';
+
+import msa1 from './images/work/caso-msa/msa1.webp';
+import msa2 from './images/work/caso-msa/msa2.webp';
+import msa3 from './images/work/caso-msa/msa3.webp';
+import msa4 from './images/work/caso-msa/msa4.webp';
+import msa5 from './images/work/caso-msa/msa5.webp';
+import msa6 from './images/work/caso-msa/msa6.webp';
+
 import tastyPic1 from './images/work/tastymade_desktop.jpg';
 import tastyPic2 from './images/work/tastymade_desktop2.jpg';
 import tastyPic3 from './images/work/tastymade_desktop3.jpg';
 import tastyPic4 from './images/work/tastymade_mobile.jpg';
+
+import ibill1 from './images/work/ibill/ibill1.webp';
+import ibill2 from './images/work/ibill/ibill2.webp';
+import ibill3 from './images/work/ibill/ibill3.webp';
+import ibill4 from './images/work/ibill/ibill4.webp';
 
 import sketchup1 from './images/work/sketchup_desktop1.jpg';
 import sketchup2 from './images/work/sketchup_desktop2.jpg';
@@ -67,6 +87,10 @@ import riddle2 from './images/work/riddle/desktop2.jpg';
 import riddle3 from './images/work/riddle/mobile1.jpg';
 import riddle4 from './images/work/riddle/mobile2.jpg';
 
+import imageGame1 from './images/work/image-prototype/image-game1.webp';
+import imageGame2 from './images/work/image-prototype/image-game2.webp';
+import imageGame3 from './images/work/image-prototype/image-game3.webp';
+
 import pizzeria1 from './images/work/pizzeria_desktop1.jpg';
 import pizzeria2 from './images/work/pizzeria_desktop2.jpg';
 import pizzeria3 from './images/work/pizzeria_desktop3.jpg';
@@ -83,9 +107,6 @@ import yall2 from './images/work/yall_desktop2.jpg';
 
 import trip1 from './images/work/trump_socialimage.png';
 
-
-// TODO:
-// - Image game prototype
 
 
 const projects: IProject[] = [
@@ -118,116 +139,6 @@ const projects: IProject[] = [
   },
 
   {
-    slug: 'unite-america-maps',
-    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.dataViz],
-    title: 'Interactive Maps',
-    subtitle: 'Unite America',
-    url: '//www.unite-america.org',
-    features: [
-      'Vanilla JS',
-      'Interactive',
-      'Google Sheets API',
-    ],
-    duration: '2 weeks',
-    date: '2019',
-    about: [
-      'Essentiall a moveable "widget" that could be inserted anywhere within the newly designed and developed Unite America site, build using the Webflow platform. This was done as a subcontract for my friends at <a href="//www.shapemaker.co/" target="_blank">Shapemaker</a>, who designed and built the rest of the site.',
-      'Because this had to be inserted into a Webflow site, there were a couple unique challenges. First, the code had to be able to be consumed by a third-party site, but developed in isolation, like a plugin. And further, the map had about six different versions that had to be able to configured, depending on what data needed to be shown. And second, the data had to come from a Google Sheet, that was essentially acting as a database.',
-      'If viewing the live URL, the maps are present on the homepage, and then most of the Stategy pages.',
-    ],
-    images: [
-      uamap1,
-      uamap2,
-      uamap3,
-    ],
-  },
-
-  {
-    slug: 'interactive-bill',
-    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.prototype, categoryMap.dataViz],
-    title: 'Interactive Bill',
-    subtitle: 'Spectrum',
-    features: [
-      'Data Visualization',
-      'Prototype',
-      'Interactive'
-    ],
-    duration: '2 weeks',
-    date: '2019',
-    about: [
-      'A redesign of the online billing experience for Spectrum customers. Previous to this, a customer\'s monthly bill was only viewable as a PDF file. This was an effort, with a cross-function team at <a href="//www.spectrum.net" target="_blank">Spectrum</a>, to modernize the bill, allowing it to be easier to consume digitally, while addressing common customer questions around cable-company billings, such as "What are these taxes", and "What changed from last month".'
-    ],
-    images: [
-      tastyPic1,
-    ],
-  },
-
-  {
-    slug: 'start',
-    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.vue],
-    title: 'Start Onboarding',
-    subtitle: 'Spectrum',
-    features: [
-      'Vue.js',
-      'GSAP',
-      'Vuex',
-    ],
-    duration: '6 weeks',
-    date: 'Fall 2017',
-    about: [
-      'A single-page onboarding app built to solve a specific problem for the company: How do we increase the frequency of new customers signing up for digital accounts. This was not a requirement for new accounts, but with millions of customers, encouraging and assisting online account adoption solved a lot of problems for the company: Easier bill pay, easier upgrades, more transparency into charges on the bill, and more. This project was an internal prototype, done at <a href="//www.spectrum.net" target="_blank">Spectrum</a>, and was the result of a cross-functional team effort, with UI, UX, copywriting, and developemnt (me) all on a focused team.',
-    ],
-    images: [
-      tastyPic1,
-    ],
-  },
-
-  {
-    slug: 'tasty-made',
-    categories: [categoryMap.featured, categoryMap.sites],
-    title: 'Tasty-Made',
-    subtitle: 'Chipotle',
-    features: [
-      'GSAP',
-      'React',
-    ],
-    duration: '2 weeks',
-    date: 'Summer 2016',
-    about: [
-      'A single-page website built for a new Chipotle venture, Tasty-Made, as designed by <a href="http://www.sequence.com" target="_blank">Sequence</a>. The new shops ultimately failed, but the simple site featured an animated inforgraphic that expanded with the user\'s scroll, the store menu, and finally styled Google maps of each store location.',
-    ],
-    images: [
-      tastyPic1,
-      tastyPic2,
-      tastyPic3,
-      tastyPic4,
-    ],
-  },
-  {
-    slug: 'techron',
-    categories: [categoryMap.featured, categoryMap.sites],
-    title: 'Techron',
-    subtitle: 'Chevron',
-    url: '//www.techron.com',
-    features: [
-      'CSS Animation',
-      'Social Share API',
-      'HTML5 Video',
-    ],
-    duration: '3 weeks',
-    date: 'Summer 2015',
-    about: [
-      'Designed by my coworkers at <a href="http://www.sequence.com" target="_blank">Sequence</a>, and something I built while employed there, this was a project that started as just a prototype complement our design deliverables, but Chevron was so satisfied with it that they asked us to produce the production site as well.',
-      'There were three challenges with the site: Getting the video experiences to work across all devices; Using the browser\'s geolocation API to direct a button to a specific, regoinal, station-finder URL (which they ended up taking out); And allowing each individual video to be shared to social media, independent from the site.  While this was a simple site to build, these features made it a more fun experience, along with the little animations that they gave me some room to run with.'
-    ],
-    images: [
-      techron1,
-      techron2,
-      techron3,
-      techron4,
-    ],
-  },
-  {
     slug: 'guac-hunter',
     categories: [categoryMap.featured, categoryMap.interactive],
     title: 'Guac Hunter',
@@ -252,6 +163,129 @@ const projects: IProject[] = [
       guac3,
     ],
   },
+
+  {
+    slug: 'unite-america-maps',
+    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.dataViz],
+    title: 'Interactive Maps',
+    subtitle: 'Unite America',
+    url: '//www.uniteamerica.org',
+    features: [
+      'Vanilla JS',
+      'Interactive',
+      'Google Sheets API',
+    ],
+    duration: '2 weeks',
+    date: '2019',
+    about: [
+      'Essentiall a moveable "widget" that could be inserted anywhere within the newly designed and developed Unite America site, build using the Webflow platform. This was done as a subcontract for my friends at <a href="//www.shapemaker.co/" target="_blank">Shapemaker</a>, who designed and built the rest of the site.',
+      'Because this had to be inserted into a Webflow site, there were a couple unique challenges. First, the code had to be able to be consumed by a third-party site, but developed in isolation, like a plugin. And further, the map had about six different versions that had to be able to configured, depending on what data needed to be shown. And second, the data had to come from a Google Sheet, that was essentially acting as a database.',
+      'If viewing the live URL, the maps are present on the homepage, and then most of the Stategy pages.',
+    ],
+    images: [
+      uamap1,
+      uamap2,
+      uamap3,
+    ],
+  },
+
+  {
+    slug: 'interactive-bill',
+    categories: [categoryMap.interactive, categoryMap.prototype, categoryMap.dataViz],
+    title: 'Interactive Bill',
+    subtitle: 'Spectrum',
+    features: [
+      'Data Visualization',
+      'Prototype',
+      'Interactive'
+    ],
+    duration: '2 weeks',
+    date: '2019',
+    about: [
+      'A redesign of the online billing experience for Spectrum customers. Previous to this, a customer\'s monthly bill was only viewable as a PDF file. This was an effort, with a cross-function team at <a href="//www.spectrum.net" target="_blank">Spectrum</a>, to modernize the bill, allowing it to be easier to consume digitally, while addressing common customer questions around cable-company billings, such as "What are these taxes", and "What changed from last month".'
+    ],
+    images: [
+      ibill1,
+      ibill2,
+      ibill3,
+      ibill4,
+    ],
+  },
+
+  {
+    slug: 'start',
+    categories: [categoryMap.featured, categoryMap.interactive, categoryMap.vue],
+    title: 'Start Onboarding',
+    subtitle: 'Spectrum',
+    features: [
+      'Vue.js',
+      'GSAP',
+      'Vuex',
+    ],
+    duration: '6 weeks',
+    date: 'Fall 2017',
+    about: [
+      'A single-page onboarding wizard built to solve a specific problem for the company: How do we increase the frequency of new customers signing up for digital accounts? This was not a requirement for new accounts, but with millions of customers, encouraging and assisting online account adoption solved a lot of problems for the company: Easier bill pay, easier upgrades, more transparency into charges on the bill, and more.',
+      'This project was an internal prototype, done at <a href="//www.spectrum.net" target="_blank">Spectrum</a>, and was the result of a cross-functional team effort, with UI, UX, copywriting, and developemnt (me) all on a focused team.',
+    ],
+    images: [
+      start3,
+      start2,
+      start4,
+      start5,
+      start6,
+      start7,
+      start8,
+    ],
+  },
+
+  {
+    slug: 'tasty-made',
+    categories: [categoryMap.sites, categoryMap.interactive],
+    title: 'Tasty-Made',
+    subtitle: 'Chipotle',
+    features: [
+      'GSAP',
+      'React',
+    ],
+    duration: '2 weeks',
+    date: 'Summer 2016',
+    about: [
+      'A single-page website built for a new Chipotle venture, Tasty-Made, as designed by <a href="http://www.sequence.com" target="_blank">Sequence</a>. The new shops ultimately failed, but the simple site featured an animated inforgraphic that expanded with the user\'s scroll, the store menu, and finally styled Google maps of each store location.',
+    ],
+    images: [
+      tastyPic1,
+      tastyPic2,
+      tastyPic3,
+      tastyPic4,
+    ],
+  },
+
+  {
+    slug: 'techron',
+    categories: [categoryMap.featured, categoryMap.sites],
+    title: 'Techron',
+    subtitle: 'Chevron',
+    url: '//www.techron.com',
+    features: [
+      'CSS Animation',
+      'Social Share API',
+      'HTML5 Video',
+    ],
+    duration: '3 weeks',
+    date: 'Summer 2015',
+    about: [
+      'Designed by my coworkers at <a href="http://www.sequence.com" target="_blank">Sequence</a>, and something I built while employed there, this was a project that started as just a prototype complement our design deliverables, but Chevron was so satisfied with it that they asked us to produce the production site as well.',
+      'There were three challenges with the site: Getting the video experiences to work across all devices; Using the browser\'s geolocation API to direct a button to a specific, regoinal, station-finder URL (which they ended up taking out); And allowing each individual video to be shared to social media, independent from the site.  While this was a simple site to build, these features made it a more fun experience, along with the little animations that they gave me some room to run with.'
+    ],
+    images: [
+      techron1,
+      techron2,
+      techron3,
+      techron4,
+    ],
+  },
+
   {
     slug: 'sketchup',
     categories: [categoryMap.featured, categoryMap.interactive],
@@ -275,6 +309,7 @@ const projects: IProject[] = [
       sketchup3,
     ],
   },
+
   {
     slug: 'riddle-a-day',
     categories: [categoryMap.interactive],
@@ -299,6 +334,7 @@ const projects: IProject[] = [
       riddle4,
     ],
   },
+
   {
     slug: 'pizzeria-locale',
     categories: [categoryMap.sites],
@@ -368,29 +404,34 @@ const projects: IProject[] = [
       'While this is a web app running that runs in a browser, the most interesting part was creating the same style page-transitions and interactions that are present within a native mobile app, so the experience could feel as authentic as possible.',
     ],
     images: [
-      tastyPic1,
+      msa1,
+      msa2,
+      msa3,
+      msa4,
+      msa5,
+      msa6,
     ],
   },
 
-  {
-    slug: 'spectrum-net-prototype',
-    categories: [categoryMap.prototype, categoryMap.interactive, categoryMap.vue],
-    title: 'Spectrum.net Interal Prototype',
-    subtitle: 'Spectrum',
-    features: [
-      'Vue.js',
-      'Animation',
-      'Heavy Interaction',
-    ],
-    duration: 'Ongoing',
-    date: '2018 - 2020',
-    about: [
-      'This was a lightweight client app that was buit to mimic Spectrum\'s live Spectrum.net website. Its purpose enable easier user testing of new features on the site, while within a more modern and lightweight development environment than the production code. And to enable different account data, I created a simple user document database in Firebase, with an interface for creating new custom users, which could be needed depending on the type of testing needing to be done. For instance, a common design consideration was for customers who were "Past Due" on their account, and how to appropriately maintain messaging within new features. It was very successful, and was used for years with both moderated and unmoderated testing.',
-    ],
-    images: [
-      tastyPic1,
-    ],
-  },
+  // {
+  //   slug: 'spectrum-net-prototype',
+  //   categories: [categoryMap.prototype, categoryMap.interactive, categoryMap.vue],
+  //   title: 'Spectrum.net Interal Prototype',
+  //   subtitle: 'Spectrum',
+  //   features: [
+  //     'Vue.js',
+  //     'Animation',
+  //     'Heavy Interaction',
+  //   ],
+  //   duration: 'Ongoing',
+  //   date: '2018 - 2020',
+  //   about: [
+  //     'This was a lightweight client app that was buit to mimic Spectrum\'s live Spectrum.net website. Its purpose enable easier user testing of new features on the site, while within a more modern and lightweight development environment than the production code. And to enable different account data, I created a simple user document database in Firebase, with an interface for creating new custom users, which could be needed depending on the type of testing needing to be done. For instance, a common design consideration was for customers who were "Past Due" on their account, and how to appropriately maintain messaging within new features. It was very successful, and was used for years with both moderated and unmoderated testing.',
+  //   ],
+  //   images: [
+  //     tastyPic1,
+  //   ],
+  // },
 
 
   {
@@ -409,31 +450,12 @@ const projects: IProject[] = [
       'A small app that was a proof-of-concept for what became Chipotle\'s Guac Hunter game. It was built over the weekend to demonstrate and test the feeling of the timer, failure and success states, and general layout.',
     ],
     images: [
-      tastyPic1,
+      imageGame1,
+      imageGame2,
+      imageGame3,
     ],
   },
 
-  // {
-  //   slug: 'athlinks',
-  //   categories: [categoryMap.sites],
-  // 	title: 'Athlinks.com',
-  // 	subtitle: 'Athlinks',
-  // 	url: '//www.athlinks.com',
-  // 	features: [
-  // 		'React.js',
-  // 		'Large Team Project',
-  // 		'Video',
-  // 	],
-  // 	duration: '6 weeks',
-  // 	date: '2017',
-  // 	about: [
-  // 		'While employed at Athlinks, I collaborated on a redesign of the whole web app, and built the new homepage, while also created most of the animations and interactions, with every part built in React.js',
-  // 	],
-  // 	images: [
-  // 		'./images/work/athlinks_desktop1.jpg',
-  // 		'./images/work/athlinks_desktop2.jpg',
-  // 	],
-  // },
   {
     slug: 'yall',
     categories: [categoryMap.sites],
@@ -455,6 +477,7 @@ const projects: IProject[] = [
       yall2,
     ],
   },
+
   {
     slug: 'trip',
     categories: [categoryMap.interactive],
