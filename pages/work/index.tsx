@@ -22,7 +22,7 @@ export default function Work({
 
 
   return (
-    <div className={s.page_work}>
+    <div className={ls.page}>
       <div className={ls.wrapper}>
         <h1>All Work</h1>
         <ProjectGrid projects={allProjects} />
