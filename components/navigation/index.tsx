@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { CSSTransition } from 'react-transition-group';
 import Logo from '../logo';
@@ -7,10 +8,27 @@ import s from './navigation.module.scss';
 
 
 export default function Navigation() {
-  const [navIsOpen, setNavIsOpen] = useState(false);
+  const router = useRouter();
+
   const navRef = useRef(null);
   const burgerRef = useRef(null);
 
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setNavIsOpen(false);
+    }
+
+    router.events.on('routeChangeStart', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    }
+  }, [router])
+
+  
   return (
     <header className={s.my_header}>
       <div className={s.header_wrapper}>
