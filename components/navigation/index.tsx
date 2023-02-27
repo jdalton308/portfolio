@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
+import Link from '@/components/my-link';
 import { CSSTransition } from 'react-transition-group';
 import Logo from '../logo';
 

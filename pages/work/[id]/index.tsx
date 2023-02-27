@@ -1,6 +1,6 @@
 import projectData, { IProject } from '@/data/projects';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from '@/components/my-link';
 import IconChevron from '@/components/icons/chevron';
 
 import s from './work-id.module.scss';

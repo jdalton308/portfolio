@@ -1,7 +1,7 @@
 import { useState, MouseEvent as ReactMouseEvent } from 'react';
 // @ts-ignore
 import throttle from 'lodash.throttle';
-import Link from 'next/link';
+import Link from '@/components/my-link';
 
 import { IProject } from '@/data/projects';
 import s from './project-grid-card.module.scss';

@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import projectData, { categoryMap, IProject } from '@/data/projects';
 import ProjectGrid from '@/components/project-grid';
+import Link from '@/components/my-link';
 
 import IconCodepen from '@/components/icons/codepen';
 import IconGithub from '@/components/icons/github';

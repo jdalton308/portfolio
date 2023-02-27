@@ -35,6 +35,10 @@ export default function Layout({
   const router = useRouter();
   const mainRef = useRef(null);
 
+  function afterPageLeave() {
+    window.scrollTo(0, 0);
+  }
+
   return (
     <>
       <Head>
@@ -59,13 +63,18 @@ export default function Layout({
           <CSSTransition
             key={router.pathname}
             nodeRef={mainRef}
-            timeout={500}
+            timeout={{
+              enter: 900,
+              exit: 600,
+            }}
+            unmountOnExit
             classNames={{
               enter: s.page_enter,
               enterActive: s.page_enter_active,
               exit: s.page_exit,
               exitActive: s.page_exit_active,
              }}
+            onExited={afterPageLeave}
           >
             <main ref={mainRef}>
               {children}

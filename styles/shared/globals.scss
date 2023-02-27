@@ -16,6 +16,14 @@ body {
   color: var(--on-background);
 }
 
+body {
+  background-color: var(--tertiary); // color during page transition
+}
+
+main {
+  background-color: var(--background);
+}
+
 button {
   background: none;
   border: 0;

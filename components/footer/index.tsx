@@ -1,5 +1,5 @@
+import Link from '@/components/my-link';
 
-import Link from 'next/link';
 import s from './footer.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
 
