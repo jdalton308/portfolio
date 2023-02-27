@@ -28,15 +28,16 @@ export default function ProjectGridCard({ project }: IProjectCardProps) {
     const {
       offsetX,
       offsetY,
+      target
     } = e;
 
     // // get coordinates of mouse in card
-    const xPos = -(offsetX - (e.target?.offsetWidth/2));
-    const yPos = offsetY - (e.target?.offsetHeight/2);
+    const xPos = -(offsetX - ((target as HTMLElement).offsetWidth/2));
+    const yPos = offsetY - ((target as HTMLElement).offsetHeight/2);
 
     // // get rotation value from coordinate within card
-    const xRot = -(yPos / (e.target?.offsetHeight/2)) * MAX_ROTATION;
-    const yRot = -(xPos / (e.target?.offsetWidth/2)) * MAX_ROTATION;
+    const xRot = -(yPos / ((target as HTMLElement).offsetHeight/2)) * MAX_ROTATION;
+    const yRot = -(xPos / ((target as HTMLElement).offsetWidth/2)) * MAX_ROTATION;
   
     setXRot(xRot);
     setYRot(yRot);
@@ -45,18 +46,18 @@ export default function ProjectGridCard({ project }: IProjectCardProps) {
   const throttledOnMousMove = throttle(onMouseMove, 100);
   
   function onMouseEnter(e: ReactMouseEvent) {
-    e.target.addEventListener('mousemove', throttledOnMousMove as EventListener);
-    e.target.addEventListener('mouseleave', onMouseExit as EventListener);
+    e.target.addEventListener('mousemove', throttledOnMousMove);
+    e.target.addEventListener('mouseleave', onMouseExit);
   }
   
-  function onMouseExit(e: MouseEvent) {
+  function onMouseExit(e: Event) {
     window.setTimeout(() => {
       setXRot(0);
       setYRot(0);
     }, 150); // wait for throttle to clear
 
-    e.target?.removeEventListener('mousemove', throttledOnMousMove as EventListener);
-    e.target?.removeEventListener('mouseleave', onMouseExit as EventListener);
+    e.target?.removeEventListener('mousemove', throttledOnMousMove);
+    e.target?.removeEventListener('mouseleave', onMouseExit);
   }
 
   return (

@@ -85,6 +85,7 @@ export default function ProjectPage({ project }: { project: IProject }) {
             <a
               href={project.url}
               target="_blank"
+              rel="noreferrer"
               aria-label={`Opens ${project.title} in a new tab`}
               className={s.secondary_button}
             >

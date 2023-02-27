@@ -84,7 +84,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
   )
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
   const featuredProjects = projectData.filter((proj) => proj.categories.includes(categoryMap.featured));
 
   return {

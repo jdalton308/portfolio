@@ -1,7 +1,6 @@
-import projectData, { IProject, categoryMap } from '@/data/projects';
+import projectData, { IProject } from '@/data/projects';
 import ProjectGrid from '@/components/project-grid';
 
-import s from './work.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
 
 export async function getStaticProps() {

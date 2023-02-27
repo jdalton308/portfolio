@@ -54,7 +54,7 @@ export default function Navigation() {
             ref={burgerRef}
             className={`${s.hamburger} ${navIsOpen ? s.hamburger_open : ''}`}
             aria-label="Open navigation menu"
-            onClick={(e) => setNavIsOpen(!navIsOpen)}
+            onClick={() => setNavIsOpen(!navIsOpen)}
           />
         </CSSTransition>
       </div>
