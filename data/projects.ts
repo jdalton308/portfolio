@@ -131,10 +131,10 @@ const projects: IProject[] = [
       'And as this website is for a drug, the biggest challenge was accommodating the regulatory review process, both internal and external of the client. This resulted in requirements around how "non-branded" pages appear, and specifics for how the "Indication" and "Safety Information" panels behaved.'
     ],
     images: [
+      welireg4,
       welireg1,
       welireg2,
       welireg3,
-      welireg4,
     ],
   },
 

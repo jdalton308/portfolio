@@ -8,6 +8,12 @@
   background-image: var(--surface2);
 }
 
+.project_grid {
+  composes: wrapper_grid from '@/styles/shared/layout.module.scss';
+  align-content: start;
+  row-gap: 0;
+}
+
 .text_column {
   grid-column: 1 / -1;
 
@@ -18,16 +24,49 @@
 
 .image_column {
   grid-column: 1 / -1;
+  white-space: nowrap;
+
+  margin-bottom: 32px;
+  padding-bottom: 12px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-color: var(--secondary) var(--primary-60);
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary-60);
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--surface);
+    border-radius: 8px;
+  }
 
   .project_image {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 24px;
+    display: inline-block;
+    height: clamp(200px, 35vh, 500px);
+    width: auto;
+    margin-right: 24px;
+    box-shadow: 0 3px 8px var(--neutral-variant-60);
   }
 
   @include bp.tabletMedia {
     grid-column: 7 / -1;
+    grid-row: 1 / span 3;
+    order: 3;
+    overflow-x: visible;
+    overflow-y: visible;
+
+    .project_image {
+      display: block;
+      height: auto;
+      max-width: 100%;
+      margin-right: 0;
+      margin-bottom: 24px;
+    }
   }
 }
 
@@ -47,13 +86,17 @@
   margin-right: 4px;
 }
 .project_header {
-  margin-bottom: 48px;
+  margin-bottom: 24px;
 
   h4 {
     margin-bottom: 0;
   }
   h1 {
     margin-bottom: 32px;
+  }
+
+  @include bp.tabletMedia {
+    margin-bottom: 48px;
   }
 }
 

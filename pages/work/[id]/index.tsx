@@ -4,7 +4,6 @@ import Image from 'next/image';
 import IconChevron from '@/components/icons/chevron';
 
 import s from './work-id.module.scss';
-import ls from '@/styles/shared/layout.module.scss';
 
 export async function getStaticPaths() {
   const paths = projectData.map((proj) => ({
@@ -33,7 +32,7 @@ export async function getStaticProps({ params }: any) {
 export default function ProjectPage({ project }: { project: IProject }) {
   return (
     <div className={s.page_project}>
-      <div className={ls.wrapper_grid}>
+      <div className={s.project_grid}>
 
         <div className={s.text_column}>
 
@@ -57,7 +56,21 @@ export default function ProjectPage({ project }: { project: IProject }) {
               { project.date } / { project.duration }
             </p>
           </div>
+        </div>
 
+        <div className={s.image_column}>
+          { project.images.map((image, i) => (
+              <Image
+                key={i}
+                src={image}
+                alt={`Screenshot number ${i + 1} of ${project.title}`}
+                className={s.project_image}
+              />
+            ))
+          }
+        </div>
+
+        <div className={s.text_column}>
           <div className={s.project_section}>
             <h3>Features</h3>
             <ul>
@@ -92,18 +105,6 @@ export default function ProjectPage({ project }: { project: IProject }) {
               Open Project
             </a>
           )}
-        </div>
-
-        <div className={s.image_column}>
-          { project.images.map((image, i) => (
-              <Image
-                key={i}
-                src={image}
-                alt={`Screenshot number ${i + 1} of ${project.title}`}
-                className={s.project_image}
-              />
-            ))
-          }
         </div>
 
       </div>
