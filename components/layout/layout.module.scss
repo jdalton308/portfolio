@@ -1,3 +1,25 @@
+// Page Transitions
+
+.page_enter {
+  opacity: 0;
+}
+.page_exit {
+  opacity: 1;
+}
+.page_enter_active {
+  opacity: 1;
+}
+.page_exit_active {
+  opacity: 0;
+}
+.page_enter_active,
+.page_exit_active {
+  transition: opacity 500ms;
+}
+
+
+// Page overlay
+
 .corner_overlay {
   composes: header_wrapper from '@/components/navigation/navigation.module.scss';
 
@@ -22,25 +44,6 @@
         color: var(--primary);
         text-decoration: underline;
       }
-    }
-  }
-}
-
-@keyframes pageChange {
-  0% {
-
-  }
-  100% {
-
-  }
-}
-
-.app_layout {
-  position: relative;
-
-  .page_transition {
-    main {
-      
     }
   }
 }

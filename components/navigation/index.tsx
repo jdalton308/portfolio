@@ -22,13 +22,15 @@ export default function Navigation() {
     }
 
     router.events.on('routeChangeStart', handleRouteChange);
+    router.events.on('hashChangeStart', handleRouteChange);
 
     return () => {
       router.events.off('routeChangeStart', handleRouteChange);
+      router.events.off('hashChangeStart', handleRouteChange);
     }
   }, [router])
 
-  
+
   return (
     <header className={s.my_header}>
       <div className={s.header_wrapper}>

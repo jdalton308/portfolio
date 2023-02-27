@@ -1,4 +1,6 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
+import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
@@ -25,14 +27,14 @@ const sourceSansPro = Source_Sans_Pro({
 
 interface ILayoutProps {
   children: ReactNode;
-  routeChanging: boolean;
 }
 
 
 export default function Layout({
   children,
-  routeChanging
 }: ILayoutProps) {
+  const router = useRouter();
+  const mainRef = useRef(null);
 
   return (
     <>
@@ -51,13 +53,26 @@ export default function Layout({
         ${playfairDisplay.variable}
         ${sourceSansPro.variable}
         ${s.app_layout}
-        ${routeChanging ? s.page_transition : ''}
       `}>
         <Navigation />
 
-        <main>
-          {children}
-        </main>
+        <SwitchTransition mode="out-in">
+          <CSSTransition
+            key={router.pathname}
+            nodeRef={mainRef}
+            timeout={500}
+            classNames={{
+              enter: s.page_enter,
+              enterActive: s.page_enter_active,
+              exit: s.page_exit,
+              exitActive: s.page_exit_active,
+             }}
+          >
+            <main ref={mainRef}>
+              {children}
+            </main>
+          </CSSTransition>
+        </SwitchTransition>
 
         <Footer />
 
