@@ -20,7 +20,6 @@ export default function Logo() {
 
 
   useEffect(() => {
-    console.log('in useEffect');
     const throttledOnMousMove = throttle(onMouseMove, 100);
     window.addEventListener('mousemove', throttledOnMousMove);
 

@@ -2,7 +2,6 @@ import { ReactNode, useRef } from 'react';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Link from 'next/link';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
 import Navigation from '../navigation';
@@ -75,19 +74,6 @@ export default function Layout({
         </SwitchTransition>
 
         <Footer />
-
-        <div className={s.corner_overlay}>
-          <span>Denver, CO, USA</span>
-          <span>
-            Independent Developer
-            <br/>
-            <Link
-              href="/#contact"
-            >
-              Available for work
-              </Link>
-          </span>
-        </div>
       </div>
     </>
   );

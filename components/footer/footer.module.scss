@@ -1,5 +1,9 @@
+
+@use '@/styles/shared/breakpoints' as bp;
+
+
 .footer {
-  padding: 80px 0 40px;
+  padding: 32px 0 32px;
   text-align: center;
   background-color: var(--surface-variant);
   
@@ -7,5 +11,49 @@
     display: inline-block;
     color: var(--tertiary);
     font-size: 0.875rem;
+  }
+
+  @include bp.tabletMedia {
+    padding: 80px 0 40px;
+  }
+}
+
+// Page overlay
+
+.corner_overlay {
+  composes: header_wrapper from '@/components/navigation/navigation.module.scss';
+  display: contents;
+
+  span {
+    display: block;
+    margin: 0 0 24px;
+    font-size: 0.875rem;
+    color: var(--tertiary);
+  }
+
+  @include bp.tabletMedia {
+    display: flex;
+    align-items: flex-end;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 40px;
+    pointer-events: none;
+
+    span {
+      pointer-events: auto;
+      margin: 0;
+
+      &:last-child {
+        text-align: right;
+      }
+
+      a {
+        &:hover {
+          color: var(--primary);
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

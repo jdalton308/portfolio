@@ -1,3 +1,7 @@
+
+@use '@/styles/shared/breakpoints' as bp;
+
+
 .page_project {
   padding-top: 92px;
   padding-bottom: 80px;
@@ -5,9 +9,43 @@
 }
 
 .text_column {
-  grid-column: 1 / span 5;
+  grid-column: 1 / -1;
+
+  @include bp.tabletMedia {
+    grid-column: 1 / span 5;
+  }
 }
 
+.image_column {
+  grid-column: 1 / -1;
+
+  .project_image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 24px;
+  }
+
+  @include bp.tabletMedia {
+    grid-column: 7 / -1;
+  }
+}
+
+.project_section {
+  margin-bottom: 32px;
+
+  h3 {
+    margin-bottom: 12px;
+  }
+}
+
+
+.back_icon {
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  margin-right: 4px;
+}
 .project_header {
   margin-bottom: 48px;
 
@@ -58,31 +96,5 @@
 
   &:hover {
     border-bottom-color: var(--primary);
-  }
-}
-
-.back_icon {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  margin-right: 4px;
-}
-
-.project_section {
-  margin-bottom: 32px;
-
-  h3 {
-    margin-bottom: 12px;
-  }
-}
-
-.image_column {
-  grid-column: 7 / -1;
-
-  .project_image {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 24px;
   }
 }
