@@ -1,6 +1,4 @@
-import { ReactNode, useRef } from 'react';
-import { SwitchTransition, CSSTransition } from "react-transition-group";
-import { useRouter } from 'next/router';
+import { ReactNode } from 'react';
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
@@ -32,12 +30,6 @@ interface ILayoutProps {
 export default function Layout({
   children,
 }: ILayoutProps) {
-  const router = useRouter();
-  const mainRef = useRef(null);
-
-  function afterPageLeave() {
-    window.scrollTo(0, 0);
-  }
 
   return (
     <>
@@ -58,7 +50,7 @@ export default function Layout({
         ${s.app_layout}
       `}>
         <Navigation />
-
+{/* 
         <SwitchTransition mode="out-in">
           <CSSTransition
             key={router.pathname}
@@ -75,12 +67,12 @@ export default function Layout({
               exitActive: s.page_exit_active,
              }}
             onExited={afterPageLeave}
-          >
-            <main ref={mainRef}>
+          > */}
+            <main>
               {children}
             </main>
-          </CSSTransition>
-        </SwitchTransition>
+          {/* </CSSTransition>
+        </SwitchTransition> */}
 
         <Footer />
       </div>

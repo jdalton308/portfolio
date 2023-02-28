@@ -17,7 +17,7 @@ interface IHomeProps {
 
 export default function Home({ featuredProjects }: IHomeProps) {
   return (
-    <>
+    <div className="page_home">
       <section className={s.hero}>
         <div className={ls.wrapper}>
           <h1>Joe Dalton</h1>
@@ -80,7 +80,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
 
