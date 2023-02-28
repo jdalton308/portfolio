@@ -1,12 +1,19 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
+import { useRouter } from 'next/router';
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
 import Navigation from '../navigation';
 import Footer from '../footer';
 
-
 import s from './layout.module.scss';
+
+
+interface ILayoutProps {
+  children: ReactNode;
+}
+
 
 const playfairDisplay = Playfair_Display({
   weight: '800',
@@ -22,14 +29,17 @@ const sourceSansPro = Source_Sans_Pro({
   variable: '--source-sans-font',
 });
 
-interface ILayoutProps {
-  children: ReactNode;
+
+function afterPageLeave() {
+  window.scrollTo(0, 0);
 }
 
 
 export default function Layout({
   children,
 }: ILayoutProps) {
+  const router = useRouter();
+  const mainRef = useRef(null);
 
   return (
     <>
@@ -50,7 +60,7 @@ export default function Layout({
         ${s.app_layout}
       `}>
         <Navigation />
-{/* 
+
         <SwitchTransition mode="out-in">
           <CSSTransition
             key={router.pathname}
@@ -67,12 +77,12 @@ export default function Layout({
               exitActive: s.page_exit_active,
              }}
             onExited={afterPageLeave}
-          > */}
-            <main>
+          >
+            <main ref={mainRef}>
               {children}
             </main>
-          {/* </CSSTransition>
-        </SwitchTransition> */}
+          </CSSTransition>
+        </SwitchTransition>
 
         <Footer />
       </div>
