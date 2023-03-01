@@ -44,10 +44,17 @@ export default function Layout({
   return (
     <>
       <Head>
-        <title>Joe Dalton | Creative Developer</title>
+        <title>Joe Dalton | Front-end Portfolio</title>
+
         <meta name="description" content="Joe Dalton web development, available for freelance and contract web developemnt, JavaScript development, Front-end development, single-page app development, React development, and Vue projects. Located in Denver, Colorado." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#006B56" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#5DDBB9" />
+        <link rel="icon" href="/favicon-32.png" sizes="any" />
+        <link rel="icon" href="/favicon-100.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon-180.png" />
+        <link rel="manifest" href="/manifest.webmanifest"></link>
 
         <link rel="canonical" href="https://www.joedalton.io" />
         <meta name="robots" content="index, follow" />

@@ -19,15 +19,15 @@
    */
 
   /* Tokens */
-  --primary-20: #00382C;
-  --primary-40: #006B56;
+  --primary-20: #00382c;
+  --primary-40: #006b56;
   --primary-60: #00A485;
   --primary-80: #5DDBB9;
   --primary-100: #FFF;
 
-  --secondary-20: #1D352D;
-  --secondary-40: #4B635B;
-  --secondary-80: #B2CCC2;
+  --secondary-20: #1d352d;
+  --secondary-40: #4b635b;
+  --secondary-80: #b2ccc2;
   --secondary-90: #CEE9DD;
   --secondary-100: #FFF;
 
@@ -63,6 +63,10 @@
   --on-surface-variant: var(--neutral-variant-30);
   --outline: var(--neutral-variant-50);
 
+  --card-overlay-start: rgba(75, 99, 91, 0.94);
+  --card-overlay-end: rgba(75, 99, 91, 0.3);
+  --card-overlay: linear-gradient(var(--card-overlay-start), var(--card-overlay-start), var(--card-overlay-end));
+
   --surface1: linear-gradient(0deg, rgba(0, 107, 86, 0.05), rgba(0, 107, 86, 0.05));
   --surface2: linear-gradient(0deg, rgba(0, 107, 86, 0.08), rgba(0, 107, 86, 0.08));
   --surface3: linear-gradient(0deg, rgba(0, 107, 86, 0.11), rgba(0, 107, 86, 0.11));
@@ -86,6 +90,9 @@
     --surface-variant: var(--neutral-variant-30);
     --on-surface-variant: var(--neutral-variant-80);
     --outline: var(--neutral-variant-60);
+
+    --card-overlay-start: rgba(178, 204, 194, 0.94);
+    --card-overlay-end: rgba(178, 204, 194, 0.3);
 
     --surface1: linear-gradient(0deg, rgba(93, 219, 185, 0.05), rgba(93, 219, 185, 0.05));
     --surface2: linear-gradient(0deg, rgba(93, 219, 185, 0.08), rgba(93, 219, 185, 0.08));

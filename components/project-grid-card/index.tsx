@@ -6,7 +6,7 @@ import Link from '@/components/my-link';
 import { IProject } from '@/data/projects';
 import s from './project-grid-card.module.scss';
 
-const MAX_ROTATION = 3;
+const MAX_ROTATION = 4;
 
 
 interface IProjectCardProps {
@@ -15,8 +15,7 @@ interface IProjectCardProps {
 
 
 function cardBackground(imgUrl: string) {
-  const overlayColor = 'rgba(75, 99, 91, 0.94)';
-  return `linear-gradient(${overlayColor}, ${overlayColor}, rgba(75, 99, 91, 0.3)), url(${imgUrl})`;
+  return `var(--card-overlay), url(${imgUrl})`;
 }
 
 
@@ -31,11 +30,11 @@ export default function ProjectGridCard({ project }: IProjectCardProps) {
       target
     } = e;
 
-    // // get coordinates of mouse in card
+    // get coordinates of mouse in card
     const xPos = -(offsetX - ((target as HTMLElement).offsetWidth/2));
     const yPos = offsetY - ((target as HTMLElement).offsetHeight/2);
 
-    // // get rotation value from coordinate within card
+    // get rotation value from coordinate within card
     const xRot = -(yPos / ((target as HTMLElement).offsetHeight/2)) * MAX_ROTATION;
     const yRot = -(xPos / ((target as HTMLElement).offsetWidth/2)) * MAX_ROTATION;
   

@@ -205,9 +205,9 @@ const projects: IProject[] = [
       'A redesign of the online billing experience for Spectrum customers. Previous to this, a customer\'s monthly bill was only viewable as a PDF file. This was an effort, with a cross-function team at <a href="//www.spectrum.net" target="_blank">Spectrum</a>, to modernize the bill, allowing it to be easier to consume digitally, while addressing common customer questions around cable-company billings, such as "What are these taxes", and "What changed from last month".'
     ],
     images: [
+      ibill3,
       ibill1,
       ibill2,
-      ibill3,
       ibill4,
     ],
   },
