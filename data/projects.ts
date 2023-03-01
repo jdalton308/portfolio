@@ -143,7 +143,8 @@ const projects: IProject[] = [
     categories: [categoryMap.featured, categoryMap.interactive],
     title: 'Guac Hunter',
     subtitle: 'Chipotle',
-    url: '//guac-hunter.joedalton.io',
+    url: 'guac-hunter-game.web.app',
+    // url: 'https://guac-hunter-game.joedalton.io/',
     features: [
       'Vanilla JS',
       'Highly Interactive',
@@ -217,6 +218,8 @@ const projects: IProject[] = [
     categories: [categoryMap.featured, categoryMap.interactive, categoryMap.vue],
     title: 'Start Onboarding',
     subtitle: 'Spectrum',
+    url: 'spectrum-start.web.app',
+    // url: 'https://spectrum-start.joedalton.io/',
     features: [
       'Vue.js',
       'GSAP',
@@ -291,7 +294,8 @@ const projects: IProject[] = [
     categories: [categoryMap.featured, categoryMap.interactive],
     title: 'Team Page App',
     subtitle: 'Sketchup',
-    url: '//icebreaker.joedalton.io',
+    url: 'https://portfolio-c3814.web.app/',
+    // url: 'https://icebreaker-team.joedalton.io/',
     features: [
       'GSAP',
       'Heavy Interactions',
@@ -315,7 +319,8 @@ const projects: IProject[] = [
     categories: [categoryMap.interactive],
     title: 'Riddle-a-Day',
     subtitle: 'ShopHouse Kitchen',
-    url: '//shophouseriddle.joedalton.io',
+    url: 'https://riddle-game.web.app',
+    // url: 'https://shophouse-riddle.joedalton.io/',
     features: [
       'Angular.js (1.x)',
       'Game',
@@ -365,7 +370,8 @@ const projects: IProject[] = [
     categories: [categoryMap.prototype],
     title: 'Care Portal',
     subtitle: 'Private',
-    url: '//care-portal.joedalton.io',
+    url: 'https://careportal-73.web.app/',
+    // url: 'https://care-portal-app.joedalton.io/',
     features: [
       'Angular.js (1.x)',
       'High-Fidelity Prototype',
@@ -392,6 +398,8 @@ const projects: IProject[] = [
     categories: [categoryMap.prototype, categoryMap.interactive, categoryMap.vue],
     title: 'MySpectrum Mobile Web Prototype',
     subtitle: 'Spectrum',
+    url: 'https://msa-app-prototype.web.app/',
+    // url: 'https://my-spectrum-prototype.joedalton.io/',
     features: [
       'Vue.js',
       'Animation',
@@ -439,6 +447,8 @@ const projects: IProject[] = [
     categories: [categoryMap.prototype, categoryMap.interactive, categoryMap.vue],
     title: 'Image Game Prototype',
     subtitle: 'Personal',
+    url: 'https://image-game-prototype.web.app/',
+    // url: 'https://image-game-prototype.joedalton.io/',
     features: [
       'Angular.js (1.x)',
       'Animation',
@@ -483,7 +493,6 @@ const projects: IProject[] = [
     categories: [categoryMap.interactive],
     title: 'Trip Trump',
     subtitle: 'Personal Project',
-    url: '//trip-trump.joedalton.io',
     features: [
       'CSS Animation',
       'Mobile Device Interaction',
