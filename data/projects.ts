@@ -143,7 +143,7 @@ const projects: IProject[] = [
     categories: [categoryMap.featured, categoryMap.interactive],
     title: 'Guac Hunter',
     subtitle: 'Chipotle',
-    url: 'guac-hunter-game.web.app',
+    url: 'https://guac-hunter-game.web.app',
     // url: 'https://guac-hunter-game.joedalton.io/',
     features: [
       'Vanilla JS',
@@ -218,7 +218,7 @@ const projects: IProject[] = [
     categories: [categoryMap.featured, categoryMap.interactive, categoryMap.vue],
     title: 'Start Onboarding',
     subtitle: 'Spectrum',
-    url: 'spectrum-start.web.app',
+    url: 'https://spectrum-start.web.app',
     // url: 'https://spectrum-start.joedalton.io/',
     features: [
       'Vue.js',
