@@ -1,6 +1,15 @@
-import { ReactNode, useRef } from 'react';
+import {
+  ReactNode,
+  useRef,
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import { useRouter } from 'next/router';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
+// @ts-ignore
+import throttle from 'lodash.throttle';
+
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
@@ -12,6 +21,12 @@ import s from './layout.module.scss';
 
 interface ILayoutProps {
   children: ReactNode;
+}
+
+interface ISectionObj {
+  top: number;
+  el: HTMLElement;
+  bg: string | undefined;
 }
 
 
@@ -40,6 +55,81 @@ export default function Layout({
 }: ILayoutProps) {
   const router = useRouter();
   const mainRef = useRef(null);
+
+  // Scroll watcher for BG
+  //-----
+  const [sectionStops, setSectionStops] = useState<ISectionObj[]>([]);
+  const [backgroundColor, setBackgroundColor] = useState('background');
+
+
+  const onSectionScroll = useCallback((e: MouseEvent) => {
+    // Change background color while scrolling
+    const {
+      scrollY,
+    } = window;
+
+    console.log('scrollY: ', scrollY);
+    console.log('section stops: ', sectionStops);
+    const currentSection = sectionStops.find((sectionObj, i) => {
+      const nextSection = sectionStops[i + 1];
+      if (nextSection) {
+        return (
+          (nextSection.top > scrollY) &&
+          (sectionObj.top < scrollY)
+        );
+      } else {
+        return true;
+      }
+    });
+
+    console.log('current section: ', currentSection);
+    if (currentSection && currentSection.bg) {
+      setBackgroundColor(currentSection.bg);
+    } else {
+      setBackgroundColor('background');
+    }
+  }, [sectionStops]);
+
+
+  const findSectionStops = useCallback(() => {
+    const sectionEls = document.querySelectorAll('section');
+    const sectionElsArray = [...sectionEls];
+
+    console.log('sections: ', sectionElsArray);
+
+    const newStops = sectionElsArray.map((el, i) => ({
+      top: el.offsetTop - (window.innerHeight * 0.5),
+      el: el,
+      bg: el.dataset?.bg,
+    }));
+
+    console.log('newStops: ', newStops);
+    setSectionStops(newStops);
+  }, []);
+
+
+  useEffect(() => {
+    findSectionStops();
+    const throttledFindStops = throttle(findSectionStops, 250);
+    document.addEventListener('resize', throttledFindStops);
+
+    return () => {
+      document.removeEventListener('resize', throttledFindStops);
+    }
+  }, []);
+
+
+  useEffect(() => {
+    const throttledSectionScroll = throttle(onSectionScroll, 100);
+    document.addEventListener('scroll', throttledSectionScroll);
+    
+    return () => {
+      document.removeEventListener('scroll', throttledSectionScroll);
+    }
+  }, [sectionStops]);
+
+  // Eng bg scroll
+  //-----
 
   return (
     <>
@@ -85,7 +175,11 @@ export default function Layout({
              }}
             onExited={afterPageLeave}
           >
-            <main ref={mainRef}>
+            <main
+              ref={mainRef}
+              className={ s.layout_main }
+              style={{ backgroundColor: `var(--${backgroundColor})` }}
+            >
               {children}
             </main>
           </CSSTransition>

@@ -1,8 +1,7 @@
 
 .hero {
-  height: clamp(500px, 100vh, 110vh);
-  display: flex;
-  align-items: center;
+  // height: clamp(500px, 100vh, 110vh);
+  height: 180vh;
 
   h1 {
     position: relative;
@@ -22,16 +21,28 @@
     }
   }
   h3 {
+    white-space: nowrap;
+    transition: transform 0.3s cubic-bezier(0.5, 0.29, 0.16, 0.97);
+    // transition: transform 0.3s;
+
     strong {
       color: var(--primary-60);
     }
   }
 }
 
+.hero_wrapper {
+  composes: wrapper from '@/styles/shared/layout.module.scss';
+  position: sticky;
+  top: 20px;
+  padding-top: 30vh;
+  padding-bottom: 30vh;
+}
+
 .section_featured_work {
   composes: section from '@/styles/shared/layout.module.scss';
-  background-color: var(--surface);
-  background-image: var(--surface1);
+  // background-color: var(--surface);
+  // background-image: var(--surface1);
 }
 
 .section_contact {

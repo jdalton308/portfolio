@@ -1,3 +1,6 @@
+import { useEffect, useState, useRef } from 'react';
+// @ts-ignore
+import throttle from 'lodash.throttle';
 import projectData, { categoryMap, IProject } from '@/data/projects';
 import ProjectGrid from '@/components/project-grid';
 import Link from '@/components/my-link';
@@ -16,23 +19,70 @@ interface IHomeProps {
 }
 
 export default function Home({ featuredProjects }: IHomeProps) {
+  const heroRef = useRef(null);
+  const textRef = useRef(null);
+
+  const [yScroll, setYScroll] = useState(0);
+
+  const onHeroScroll = (e: MouseEvent) => {
+    if (heroRef.current && textRef.current) {
+      const scrollPosition = window.scrollY;
+      const heroHeight = (heroRef.current.scrollHeight - (window.innerHeight * 0.7));
+      const percentHeroScrolled = scrollPosition / heroHeight;
+
+      const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text
+
+      if (percentHeroScrolled <= 1) {
+        setYScroll(percentHeroScrolled * textWidth);
+      } else {
+        setYScroll(textWidth);
+      }
+    }
+  }
+
+  useEffect(() => {
+    const throttledHeroScroll = throttle(onHeroScroll, 100);
+    document.addEventListener('scroll', throttledHeroScroll);
+    
+    return () => {
+      document.removeEventListener('scroll', throttledHeroScroll);
+    }
+  }, []);
+
+
   return (
     <div className="page_home">
-      <section className={s.hero}>
-        <div className={ls.wrapper}>
+      <section
+        ref={heroRef}
+        className={s.hero}
+        data-bg="background"
+      >
+        <div className={s.hero_wrapper}>
           <h1>Joe Dalton</h1>
-          <h3>User Interface Development. Interaction Design. Front-end Architecture. Motion Design. Headless CMS Architecture. <strong>Creative Developer.</strong></h3>
+          <h3
+            ref={textRef}
+            style={{transform: `translateX(-${yScroll}px)`}}
+          >
+            Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
+          </h3>
         </div>
       </section>
 
-      <section className={s.section_featured_work}>
+      <section
+        className={s.section_featured_work}
+        data-bg="surface3"
+      >
         <div className={ls.wrapper}>
           <h2>Featured Work</h2>
           <ProjectGrid projects={ featuredProjects }/>
         </div>
       </section>
 
-      <section className={s.section_contact}  id="contact">
+      <section
+        className={s.section_contact}
+        id="contact"
+        data-bg="background"
+      >
         <div className={ls.wrapper}>
           <h2>Contact</h2>
           <div className={s.contact_item}>
