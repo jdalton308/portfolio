@@ -9,13 +9,11 @@ import { useRouter } from 'next/router';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 // @ts-ignore
 import throttle from 'lodash.throttle';
-
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
 
 import Navigation from '../navigation';
 import Footer from '../footer';
-
 import s from './layout.module.scss';
 
 
@@ -45,9 +43,6 @@ const sourceSansPro = Source_Sans_Pro({
 });
 
 
-function afterPageLeave() {
-  window.scrollTo(0, 0);
-}
 
 
 export default function Layout({
@@ -55,6 +50,13 @@ export default function Layout({
 }: ILayoutProps) {
   const router = useRouter();
   const mainRef = useRef(null);
+  const [currentPath, setCurrentPath] = useState('');
+
+
+  const afterPageLeave = () => {
+    window.scrollTo(0, 0);
+    setCurrentPath(router.pathname);
+  }
 
   // Scroll watcher for BG
   //-----
@@ -63,13 +65,10 @@ export default function Layout({
 
 
   const onSectionScroll = useCallback((e: MouseEvent) => {
-    // Change background color while scrolling
     const {
       scrollY,
     } = window;
 
-    console.log('scrollY: ', scrollY);
-    console.log('section stops: ', sectionStops);
     const currentSection = sectionStops.find((sectionObj, i) => {
       const nextSection = sectionStops[i + 1];
       if (nextSection) {
@@ -82,7 +81,6 @@ export default function Layout({
       }
     });
 
-    console.log('current section: ', currentSection);
     if (currentSection && currentSection.bg) {
       setBackgroundColor(currentSection.bg);
     } else {
@@ -95,15 +93,12 @@ export default function Layout({
     const sectionEls = document.querySelectorAll('section');
     const sectionElsArray = [...sectionEls];
 
-    console.log('sections: ', sectionElsArray);
-
     const newStops = sectionElsArray.map((el, i) => ({
       top: el.offsetTop - (window.innerHeight * 0.5),
       el: el,
       bg: el.dataset?.bg,
     }));
 
-    console.log('newStops: ', newStops);
     setSectionStops(newStops);
   }, []);
 
@@ -116,13 +111,13 @@ export default function Layout({
     return () => {
       document.removeEventListener('resize', throttledFindStops);
     }
-  }, []);
+  }, [currentPath]);
 
 
   useEffect(() => {
     const throttledSectionScroll = throttle(onSectionScroll, 100);
     document.addEventListener('scroll', throttledSectionScroll);
-    
+  
     return () => {
       document.removeEventListener('scroll', throttledSectionScroll);
     }
@@ -130,6 +125,7 @@ export default function Layout({
 
   // Eng bg scroll
   //-----
+
 
   return (
     <>

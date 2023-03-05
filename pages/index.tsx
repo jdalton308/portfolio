@@ -27,7 +27,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
   const onHeroScroll = (e: MouseEvent) => {
     if (heroRef.current && textRef.current) {
       const scrollPosition = window.scrollY;
-      const heroHeight = (heroRef.current.scrollHeight - (window.innerHeight * 0.7));
+      const heroHeight = (heroRef.current.scrollHeight - (window.innerHeight * 0.8));
       const percentHeroScrolled = scrollPosition / heroHeight;
 
       const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text
