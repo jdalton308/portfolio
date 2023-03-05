@@ -19,15 +19,15 @@ interface IHomeProps {
 }
 
 export default function Home({ featuredProjects }: IHomeProps) {
-  const heroRef = useRef(null);
-  const textRef = useRef(null);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const textRef = useRef<HTMLHeadingElement | null>(null);
 
   const [yScroll, setYScroll] = useState(0);
 
-  const onHeroScroll = (e: MouseEvent) => {
+  const onHeroScroll = () => {
     if (heroRef.current && textRef.current) {
       const scrollPosition = window.scrollY;
-      const heroHeight = (heroRef.current.scrollHeight - (window.innerHeight * 0.8));
+      const heroHeight = (heroRef.current?.scrollHeight - (window.innerHeight * 0.8));
       const percentHeroScrolled = scrollPosition / heroHeight;
 
       const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text

@@ -64,7 +64,7 @@ export default function Layout({
   const [backgroundColor, setBackgroundColor] = useState('background');
 
 
-  const onSectionScroll = useCallback((e: MouseEvent) => {
+  const onSectionScroll = useCallback(() => {
     const {
       scrollY,
     } = window;
@@ -93,7 +93,7 @@ export default function Layout({
     const sectionEls = document.querySelectorAll('section');
     const sectionElsArray = [...sectionEls];
 
-    const newStops = sectionElsArray.map((el, i) => ({
+    const newStops = sectionElsArray.map((el) => ({
       top: el.offsetTop - (window.innerHeight * 0.5),
       el: el,
       bg: el.dataset?.bg,
@@ -111,7 +111,7 @@ export default function Layout({
     return () => {
       document.removeEventListener('resize', throttledFindStops);
     }
-  }, [currentPath]);
+  }, [currentPath, findSectionStops]);
 
 
   useEffect(() => {
@@ -121,7 +121,7 @@ export default function Layout({
     return () => {
       document.removeEventListener('scroll', throttledSectionScroll);
     }
-  }, [sectionStops]);
+  }, [onSectionScroll]);
 
   // Eng bg scroll
   //-----

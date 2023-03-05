@@ -26,7 +26,7 @@ export default function Logo() {
     return () => {
       window.removeEventListener('mousemove', throttledOnMousMove);
     };
-  }, []);
+  }, [onMouseMove]);
 
 
   return (
