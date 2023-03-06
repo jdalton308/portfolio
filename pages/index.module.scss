@@ -1,7 +1,9 @@
+@use '@/styles/shared/breakpoints' as bp;
 
 .hero {
-  // height: clamp(500px, 100vh, 110vh);
-  height: 180vh;
+  height: clamp(500px, 100vh, 110vh);
+  display: flex;
+  align-items: center;
 
   h1 {
     position: relative;
@@ -21,28 +23,48 @@
     }
   }
   h3 {
-    white-space: nowrap;
     transition: transform 0.3s cubic-bezier(0.5, 0.29, 0.16, 0.97);
-    // transition: transform 0.3s;
 
     strong {
       color: var(--primary-60);
     }
   }
+
+  @include bp.desktopMedia {
+    display: block;
+    height: 180vh;
+    padding-bottom: 15vh;
+
+    h3 {
+      white-space: nowrap;
+    }
+  }
+}
+
+.hero_text_container {
+  width: 100%;
+
+  @include bp.desktopMedia {
+    position: sticky;
+    top: 30vh;
+    width: 100vw;
+    overflow: hidden;
+  }
 }
 
 .hero_wrapper {
   composes: wrapper from '@/styles/shared/layout.module.scss';
-  position: sticky;
-  top: 20px;
-  padding-top: 30vh;
-  padding-bottom: 30vh;
+
 }
+
 
 .section_featured_work {
   composes: section from '@/styles/shared/layout.module.scss';
-  // background-color: var(--surface);
-  // background-image: var(--surface1);
+  background-color: var(--surface1);
+
+  @include bp.desktopMedia {
+    background-color: transparent;
+  }
 }
 
 .section_contact {

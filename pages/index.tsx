@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 // @ts-ignore
 import throttle from 'lodash.throttle';
 import projectData, { categoryMap, IProject } from '@/data/projects';
+import { desktopBp } from '@/util';
+
 import ProjectGrid from '@/components/project-grid';
 import Link from '@/components/my-link';
-
 import IconCodepen from '@/components/icons/codepen';
 import IconGithub from '@/components/icons/github';
 import IconInstagram from '@/components/icons/instagram';
@@ -24,7 +25,8 @@ export default function Home({ featuredProjects }: IHomeProps) {
 
   const [yScroll, setYScroll] = useState(0);
 
-  const onHeroScroll = () => {
+
+  const onHeroScroll = useCallback(throttle(() => {
     if (heroRef.current && textRef.current) {
       const scrollPosition = window.scrollY;
       const heroHeight = (heroRef.current?.scrollHeight - (window.innerHeight * 0.8));
@@ -38,16 +40,35 @@ export default function Home({ featuredProjects }: IHomeProps) {
         setYScroll(textWidth);
       }
     }
-  }
+  }, 100), [heroRef, textRef]);
+
+
+  const addScrollListner = useCallback(() => {
+    const scrollClean = () => {
+      document.removeEventListener('scroll', onHeroScroll);
+    };
+
+    if (window.innerWidth > desktopBp) {
+      scrollClean();
+      document.addEventListener('scroll', onHeroScroll);
+
+    } else {
+      scrollClean();
+    }
+
+    return scrollClean;
+  }, [onHeroScroll]);
+
 
   useEffect(() => {
-    const throttledHeroScroll = throttle(onHeroScroll, 100);
-    document.addEventListener('scroll', throttledHeroScroll);
-    
+    const scrollCleanFn = addScrollListner();
+    window.addEventListener('resize', addScrollListner);
+
     return () => {
-      document.removeEventListener('scroll', throttledHeroScroll);
+      window.removeEventListener('resize', addScrollListner);
+      scrollCleanFn();
     }
-  }, []);
+  }, [addScrollListner]);
 
 
   return (
@@ -57,14 +78,16 @@ export default function Home({ featuredProjects }: IHomeProps) {
         className={s.hero}
         data-bg="background"
       >
-        <div className={s.hero_wrapper}>
-          <h1>Joe Dalton</h1>
-          <h3
-            ref={textRef}
-            style={{transform: `translateX(-${yScroll}px)`}}
-          >
-            Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
-          </h3>
+        <div className={s.hero_text_container}>
+          <div className={s.hero_wrapper}>
+            <h1>Joe Dalton</h1>
+            <h3
+              ref={textRef}
+              style={{transform: `translateX(-${yScroll}px)`}}
+            >
+              Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
+            </h3>
+          </div>
         </div>
       </section>
 

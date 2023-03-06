@@ -5,12 +5,13 @@ import {
   useEffect,
   useCallback,
 } from 'react';
-import { useRouter } from 'next/router';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 // @ts-ignore
 import throttle from 'lodash.throttle';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
+import { desktopBp } from '@/util';
 
 import Navigation from '../navigation';
 import Footer from '../footer';
@@ -64,10 +65,8 @@ export default function Layout({
   const [backgroundColor, setBackgroundColor] = useState('background');
 
 
-  const onSectionScroll = useCallback(() => {
-    const {
-      scrollY,
-    } = window;
+  const onSectionScroll = useCallback(throttle(() => {
+    const { scrollY } = window;
 
     const currentSection = sectionStops.find((sectionObj, i) => {
       const nextSection = sectionStops[i + 1];
@@ -86,10 +85,10 @@ export default function Layout({
     } else {
       setBackgroundColor('background');
     }
-  }, [sectionStops]);
+  }, 100), [sectionStops]);
 
 
-  const findSectionStops = useCallback(() => {
+  const findSectionStops = useCallback(throttle(() => {
     const sectionEls = document.querySelectorAll('section');
     const sectionElsArray = [...sectionEls];
 
@@ -100,28 +99,42 @@ export default function Layout({
     }));
 
     setSectionStops(newStops);
-  }, []);
+  }, 250), []);
+
+
+  const initScrollWatch = useCallback(() => {
+    if (window.innerWidth > desktopBp) {
+      document.addEventListener('scroll', onSectionScroll);
+
+      const cleanFn = () => {
+        document.removeEventListener('scroll', onSectionScroll);
+      }
+      return cleanFn;
+    }
+    return () => {};
+  }, [onSectionScroll]);
 
 
   useEffect(() => {
     findSectionStops();
-    const throttledFindStops = throttle(findSectionStops, 250);
-    document.addEventListener('resize', throttledFindStops);
+    window.addEventListener('resize', findSectionStops);
 
     return () => {
-      document.removeEventListener('resize', throttledFindStops);
+      window.removeEventListener('resize', findSectionStops);
     }
-  }, [currentPath, findSectionStops]);
+  }, [findSectionStops, currentPath]);
 
 
   useEffect(() => {
-    const throttledSectionScroll = throttle(onSectionScroll, 100);
-    document.addEventListener('scroll', throttledSectionScroll);
-  
+    const scrollCleanup = initScrollWatch();
+    window.addEventListener('resize', initScrollWatch);
+
     return () => {
-      document.removeEventListener('scroll', throttledSectionScroll);
+      scrollCleanup();
+      window.removeEventListener('resize', initScrollWatch);
     }
-  }, [onSectionScroll]);
+  }, [initScrollWatch]);
+
 
   // Eng bg scroll
   //-----
