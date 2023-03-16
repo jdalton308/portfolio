@@ -13,6 +13,7 @@ import IconLinkedin from '@/components/icons/linkedin';
 
 import s from './index.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
+import buttons from '@/styles/shared/buttons.module.scss';
 
 
 interface IHomeProps {
@@ -98,16 +99,26 @@ export default function Home({ featuredProjects }: IHomeProps) {
         <div className={ls.wrapper}>
           <h2>Featured Work</h2>
           <ProjectGrid projects={ featuredProjects }/>
+
+          <div className={s.feature_work_btn}>
+            <Link
+              href="/work"
+              className={buttons.primary_button}
+            >
+              See all work
+            </Link>
+          </div>
         </div>
       </section>
 
       <section
         className={s.section_contact}
-        id="contact"
         data-bg="background"
       >
         <div className={ls.wrapper}>
-          <h2>Contact</h2>
+          <h2 id="contact">
+            Contact
+          </h2>
           <div className={s.contact_item}>
             <div className={s.contact_label}>
               Email

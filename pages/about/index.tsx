@@ -1,6 +1,6 @@
 import s from './about.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
-import ws from '../work/[id]/work-id.module.scss';
+import buttons from '@styles/shared/buttons.module.scss';
 
 export default function About() {
   return (
@@ -47,7 +47,7 @@ export default function About() {
         </div>
 
         <a
-          className={ws.secondary_button}
+          className={buttons.secondary_button}
           href="/resume.pdf"
           download
         >

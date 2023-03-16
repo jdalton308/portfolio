@@ -6,7 +6,7 @@ import Link from '@/components/my-link';
 import { IProject } from '@/data/projects';
 import s from './project-grid-card.module.scss';
 
-const MAX_ROTATION = 4;
+const MAX_ROTATION = 6;
 
 
 interface IProjectCardProps {

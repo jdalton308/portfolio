@@ -4,6 +4,7 @@ import Link from '@/components/my-link';
 import IconChevron from '@/components/icons/chevron';
 
 import s from './work-id.module.scss';
+import buttons from '@/styles/shared/buttons.module.scss';
 
 export async function getStaticPaths() {
   const paths = projectData.map((proj) => ({
@@ -38,7 +39,7 @@ export default function ProjectPage({ project }: { project: IProject }) {
 
           <Link
             href="/work"
-            className={s.tertiary_button}
+            className={buttons.tertiary_button}
           >
             <IconChevron className={s.back_icon} />
             Back
@@ -100,7 +101,7 @@ export default function ProjectPage({ project }: { project: IProject }) {
               target="_blank"
               rel="noreferrer"
               aria-label={`Opens ${project.title} in a new tab`}
-              className={s.secondary_button}
+              className={buttons.secondary_button}
             >
               Open Project
             </a>
