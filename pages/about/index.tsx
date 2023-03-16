@@ -1,6 +1,6 @@
 import s from './about.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
-import buttons from '@styles/shared/buttons.module.scss';
+import buttons from '@/styles/shared/buttons.module.scss';
 
 export default function About() {
   return (
