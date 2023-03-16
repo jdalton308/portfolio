@@ -76,7 +76,7 @@ export default function Work({
               <button
                 key={categoryArr[0]}
                 type="button"
-                onClick={ (e) => {onSelectCategoryFilter(categoryArr[1])} }
+                onClick={ () => {onSelectCategoryFilter(categoryArr[1])} }
                 className={`
                   ${selectedFilters.has(categoryArr[1]) ? s.filter_active : ''}
                   ${s.filter_button}
@@ -89,7 +89,7 @@ export default function Work({
 
           <button
             type="button"
-            onClick={(e) => onClearFilters()}
+            onClick={() => onClearFilters()}
             className={ buttons.tertiary_button }
           >
             Reset Filters
