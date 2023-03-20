@@ -59,81 +59,81 @@ export default function Layout({
     setCurrentPath(router.pathname);
   }
 
-  // Scroll watcher for BG
-  //-----
-  const [sectionStops, setSectionStops] = useState<ISectionObj[]>([]);
-  const [backgroundColor, setBackgroundColor] = useState('background');
+  // // Scroll watcher for BG
+  // //-----
+  // const [sectionStops, setSectionStops] = useState<ISectionObj[]>([]);
+  // const [backgroundColor, setBackgroundColor] = useState('background');
 
 
-  const onSectionScroll = useCallback(throttle(() => {
-    const { scrollY } = window;
+  // const onSectionScroll = useCallback(throttle(() => {
+  //   const { scrollY } = window;
 
-    const currentSection = sectionStops.find((sectionObj, i) => {
-      const nextSection = sectionStops[i + 1];
-      if (nextSection) {
-        return (
-          (nextSection.top > scrollY) &&
-          (sectionObj.top < scrollY)
-        );
-      } else {
-        return true;
-      }
-    });
+  //   const currentSection = sectionStops.find((sectionObj, i) => {
+  //     const nextSection = sectionStops[i + 1];
+  //     if (nextSection) {
+  //       return (
+  //         (nextSection.top > scrollY) &&
+  //         (sectionObj.top < scrollY)
+  //       );
+  //     } else {
+  //       return true;
+  //     }
+  //   });
 
-    if (currentSection && currentSection.bg) {
-      setBackgroundColor(currentSection.bg);
-    } else {
-      setBackgroundColor('background');
-    }
-  }, 100), [sectionStops]);
-
-
-  const findSectionStops = useCallback(throttle(() => {
-    const sectionEls = document.querySelectorAll('section');
-    const sectionElsArray = [...sectionEls];
-
-    const newStops = sectionElsArray.map((el) => ({
-      top: el.offsetTop - (window.innerHeight * 0.5),
-      el: el,
-      bg: el.dataset?.bg,
-    }));
-
-    setSectionStops(newStops);
-  }, 250), []);
+  //   if (currentSection && currentSection.bg) {
+  //     setBackgroundColor(currentSection.bg);
+  //   } else {
+  //     setBackgroundColor('background');
+  //   }
+  // }, 100), [sectionStops]);
 
 
-  const initScrollWatch = useCallback(() => {
-    if (window.innerWidth > desktopBp) {
-      document.addEventListener('scroll', onSectionScroll);
+  // const findSectionStops = useCallback(throttle(() => {
+  //   const sectionEls = document.querySelectorAll('section');
+  //   const sectionElsArray = [...sectionEls];
 
-      const cleanFn = () => {
-        document.removeEventListener('scroll', onSectionScroll);
-      }
-      return cleanFn;
-    }
-    return () => {};
-  }, [onSectionScroll]);
+  //   const newStops = sectionElsArray.map((el) => ({
+  //     top: el.offsetTop - (window.innerHeight * 0.5),
+  //     el: el,
+  //     bg: el.dataset?.bg,
+  //   }));
 
-
-  useEffect(() => {
-    findSectionStops();
-    window.addEventListener('resize', findSectionStops);
-
-    return () => {
-      window.removeEventListener('resize', findSectionStops);
-    }
-  }, [findSectionStops, currentPath]);
+  //   setSectionStops(newStops);
+  // }, 250), []);
 
 
-  useEffect(() => {
-    const scrollCleanup = initScrollWatch();
-    window.addEventListener('resize', initScrollWatch);
+  // const initScrollWatch = useCallback(() => {
+  //   if (window.innerWidth > desktopBp) {
+  //     document.addEventListener('scroll', onSectionScroll);
 
-    return () => {
-      scrollCleanup();
-      window.removeEventListener('resize', initScrollWatch);
-    }
-  }, [initScrollWatch]);
+  //     const cleanFn = () => {
+  //       document.removeEventListener('scroll', onSectionScroll);
+  //     }
+  //     return cleanFn;
+  //   }
+  //   return () => {};
+  // }, [onSectionScroll]);
+
+
+  // useEffect(() => {
+  //   findSectionStops();
+  //   window.addEventListener('resize', findSectionStops);
+
+  //   return () => {
+  //     window.removeEventListener('resize', findSectionStops);
+  //   }
+  // }, [findSectionStops, currentPath]);
+
+
+  // useEffect(() => {
+  //   const scrollCleanup = initScrollWatch();
+  //   window.addEventListener('resize', initScrollWatch);
+
+  //   return () => {
+  //     scrollCleanup();
+  //     window.removeEventListener('resize', initScrollWatch);
+  //   }
+  // }, [initScrollWatch]);
 
 
   // Eng bg scroll
@@ -187,7 +187,6 @@ export default function Layout({
             <main
               ref={mainRef}
               className={ s.layout_main }
-              style={{ backgroundColor: `var(--${backgroundColor})` }}
             >
               {children}
             </main>

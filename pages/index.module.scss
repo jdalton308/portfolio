@@ -23,7 +23,7 @@
     }
   }
   h3 {
-    transition: transform 0.3s cubic-bezier(0.5, 0.29, 0.16, 0.97);
+    // transition: transform 0.3s cubic-bezier(0.5, 0.29, 0.16, 0.97);
 
     strong {
       color: var(--primary-60);
@@ -32,7 +32,8 @@
 
   @include bp.desktopMedia {
     display: block;
-    height: 180vh;
+    // height: 180vh;
+    height: 100vh;
     padding-bottom: 15vh;
 
     h3 {
@@ -44,17 +45,43 @@
 .hero_text_container {
   width: 100%;
 
-  @include bp.desktopMedia {
-    position: sticky;
-    top: 30vh;
-    width: 100vw;
-    overflow: hidden;
-  }
+  // @include bp.desktopMedia {
+  //   position: sticky;
+  //   top: 30vh;
+  //   width: 100vw;
+  //   overflow: hidden;
+  // }
 }
 
 .hero_wrapper {
   composes: wrapper from '@/styles/shared/layout.module.scss';
+}
 
+.hero_bg_spot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  display: inline-block;
+  height: 10vw;
+  width: 10vw;
+  transform: translate(-50%, -50%);
+  background-color: var(--green-light);
+  border-radius: 50%;
+  box-shadow: 0 0 50px 50px var(--background);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    display: inline-block;
+    height: 80%;
+    width: 80%;
+    border-radius: 50%;
+    background-color: var(--background);
+    box-shadow: 0 0 50px 50px var(--background);
+  }
 }
 
 

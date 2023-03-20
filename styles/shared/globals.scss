@@ -17,6 +17,8 @@ body {
 
 body {
   background-color: var(--tertiary); // color during page transition
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 main {

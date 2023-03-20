@@ -1,6 +1,8 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useLayoutEffect, useState, useRef } from 'react';
 // @ts-ignore
 import throttle from 'lodash.throttle';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import projectData, { categoryMap, IProject } from '@/data/projects';
 import { desktopBp } from '@/util';
 
@@ -15,61 +17,111 @@ import s from './index.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
 import buttons from '@/styles/shared/buttons.module.scss';
 
+gsap.registerPlugin(ScrollTrigger);
+
 
 interface IHomeProps {
   featuredProjects: IProject[];
 }
 
+
+
 export default function Home({ featuredProjects }: IHomeProps) {
+
   const heroRef = useRef<HTMLElement | null>(null);
   const textRef = useRef<HTMLHeadingElement | null>(null);
+  const spotRef = useRef<HTMLSpanElement | null>(null);
+  const tlRef = useRef(null);
 
-  const [yScroll, setYScroll] = useState(0);
+  // Init Greensock scroll animation
+  useLayoutEffect(() => {
+    let gsapCtx = gsap.context(() => {
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          scrub: true,
+          pin: true,
+          start: "top top",
+          end: "+=100%",
+        }
+      });
+
+      const maxX = (window.innerWidth / 3);
+      const maxY = (window.innerHeight / 3);
+
+      const randomPosition = {
+        duration: 1,
+        x: `random(-${maxX}, ${maxX}, 10)`,
+        y: `random(-${maxY}, ${maxY}, 10)`,
+        rotation: 'random(-360, 360, 5)',
+      };
+
+      tl.to(spotRef.current, randomPosition)
+        .to(spotRef.current, randomPosition)
+        .to(spotRef.current, {
+          duration: 1,
+          x: '0',
+          y: '0',
+          ease: 'circ.out',
+        })
+        .to(spotRef.current, {
+          duration: 2,
+          scale: 8,
+        });
+      
+      return () => gsapCtx.revert();
+
+    }, heroRef);
+  }, []);
 
 
-  const onHeroScroll = useCallback(throttle(() => {
-    if (heroRef.current && textRef.current) {
-      const scrollPosition = window.scrollY;
-      const heroHeight = (heroRef.current?.scrollHeight - (window.innerHeight * 0.8));
-      const percentHeroScrolled = scrollPosition / heroHeight;
-
-      const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text
-
-      if (percentHeroScrolled <= 1) {
-        setYScroll(percentHeroScrolled * textWidth);
-      } else {
-        setYScroll(textWidth);
-      }
-    }
-  }, 100), [heroRef, textRef]);
+  // const [yScroll, setYScroll] = useState(0);
 
 
-  const addScrollListner = useCallback(() => {
-    const scrollClean = () => {
-      document.removeEventListener('scroll', onHeroScroll);
-    };
+  // const onHeroScroll = useCallback(throttle(() => {
+  //   if (heroRef.current && textRef.current) {
+  //     const scrollPosition = window.scrollY;
+  //     const heroHeight = (heroRef.current?.scrollHeight - (window.innerHeight * 0.8));
+  //     const percentHeroScrolled = scrollPosition / heroHeight;
 
-    if (window.innerWidth > desktopBp) {
-      scrollClean();
-      document.addEventListener('scroll', onHeroScroll);
+  //     const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text
 
-    } else {
-      scrollClean();
-    }
+  //     if (percentHeroScrolled <= 1) {
+  //       setYScroll(percentHeroScrolled * textWidth);
+  //     } else {
+  //       setYScroll(textWidth);
+  //     }
+  //   }
+  // }, 100), [heroRef, textRef]);
 
-    return scrollClean;
-  }, [onHeroScroll]);
+
+  // const addScrollListner = useCallback(() => {
+  //   const scrollClean = () => {
+  //     document.removeEventListener('scroll', onHeroScroll);
+  //   };
+
+  //   if (window.innerWidth > desktopBp) {
+  //     scrollClean();
+  //     document.addEventListener('scroll', onHeroScroll);
+
+  //   } else {
+  //     scrollClean();
+  //   }
+
+  //   return scrollClean;
+  // }, [onHeroScroll]);
 
 
-  useEffect(() => {
-    const scrollCleanFn = addScrollListner();
-    window.addEventListener('resize', addScrollListner);
+  // useEffect(() => {
+  //   const scrollCleanFn = addScrollListner();
+  //   window.addEventListener('resize', addScrollListner);
 
-    return () => {
-      window.removeEventListener('resize', addScrollListner);
-      scrollCleanFn();
-    }
-  }, [addScrollListner]);
+  //   return () => {
+  //     window.removeEventListener('resize', addScrollListner);
+  //     scrollCleanFn();
+  //   }
+  // }, [addScrollListner]);
 
 
   return (
@@ -82,12 +134,13 @@ export default function Home({ featuredProjects }: IHomeProps) {
         <div className={s.hero_text_container}>
           <div className={s.hero_wrapper}>
             <h1>Joe Dalton</h1>
-            <h3
-              ref={textRef}
-              style={{transform: `translateX(-${yScroll}px)`}}
-            >
+            <h3 ref={textRef}>
               Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
             </h3>
+            <span
+              ref={spotRef}
+              className={s.hero_bg_spot}
+            />
           </div>
         </div>
       </section>
