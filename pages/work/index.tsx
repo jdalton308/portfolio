@@ -26,6 +26,7 @@ export default function Work({
   allProjects
 }: IWorkProps) {
 
+  const [canHideList, setCanHideList] = useState(false);
   const [shownProjects, setShownProjects] = useState(allProjects);
   const [selectedFilters, setSelectedFilters] = useState(new Set());
 
@@ -51,18 +52,28 @@ export default function Work({
   useEffect(() => {
     const filters = [...selectedFilters];
 
-    if (filters.length) {
-      const newProjects = allProjects.filter((proj) => {
-        return proj.categories.some((projCat) => {
-          return filters.includes(projCat);
-        });
-      });
-      setShownProjects(newProjects);
+    setCanHideList(true);
 
-    } else {
-      setShownProjects(allProjects);
-    }
+    // Timeout for animation
+    window.setTimeout(() => {
+      if (filters.length) {
+        const newProjects = allProjects.filter((proj) => {
+          return proj.categories.some((projCat) => {
+            return filters.includes(projCat);
+          });
+        });
+        setShownProjects(newProjects);
+
+      } else {
+        setShownProjects(allProjects);
+      }
+    }, 500);
+
   }, [selectedFilters]);
+
+  useEffect(() => {
+    setCanHideList(false);
+  }, [shownProjects])
 
 
   return (
@@ -101,7 +112,15 @@ export default function Work({
           Showing {shownProjects.length} / {allProjects.length}
         </div>
 
-        <ProjectGrid projects={shownProjects} />
+        <div
+          className={`
+            ${s.projects_container}
+            ${canHideList ? s.hide_projects : ''}
+          `}
+        >
+          <ProjectGrid projects={shownProjects} />
+        </div>
+
       </div>
     </div>
   );

@@ -74,3 +74,12 @@
   text-align: right;
   color: var(--tertiary);
 }
+
+.projects_container {
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+.hide_projects {
+  opacity: 0;
+}
