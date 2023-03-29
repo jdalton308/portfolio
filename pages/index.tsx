@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState, useRef } from 'react';
+import { useLayoutEffect, useEffect, useState, useRef } from 'react';
 // @ts-ignore
 import throttle from 'lodash.throttle';
 import { gsap } from 'gsap';
@@ -28,51 +28,73 @@ interface IHomeProps {
 
 export default function Home({ featuredProjects }: IHomeProps) {
 
-  const heroRef = useRef<HTMLElement | null>(null);
+  const pageRef = useRef<HTMLDivElement | null>(null);
+  const heroWrapperRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLHeadingElement | null>(null);
   const spotRef = useRef<HTMLSpanElement | null>(null);
-  const tlRef = useRef(null);
+  // const tlRef = useRef(null);
 
   // Init Greensock scroll animation
-  useLayoutEffect(() => {
+  useEffect(() => {
     let gsapCtx = gsap.context(() => {
+
+      // TEST
+      // gsap.to(s.hero_bg_spot, {
+      //   scrollTrigger: {
+      //     trigger: s.hero,
+      //     scrub: true,
+      //     pin: true,
+      //     start: "top top",
+      //     end: "+=200%",
+      //   },
+      //   ease: 'none',
+      //   rotation: 180,
+      // });
+
 
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: heroRef.current,
+          trigger: heroWrapperRef.current,
           scrub: true,
-          pin: true,
-          start: "top top",
-          end: "+=100%",
+          // pin: true,
+          start: "top bottom",
+          // end: "bottom top",
+          end: "top top",
         }
       });
 
-      const maxX = (window.innerWidth / 3);
-      const maxY = (window.innerHeight / 3);
+      // const maxX = (window.innerWidth / 3);
+      // const maxY = (window.innerHeight / 3);
 
-      const randomPosition = {
-        duration: 1,
-        x: `random(-${maxX}, ${maxX}, 10)`,
-        y: `random(-${maxY}, ${maxY}, 10)`,
-        rotation: 'random(-360, 360, 5)',
-      };
+      // const randomPosition = {
+      //   duration: 1,
+      //   x: `random(-${maxX}, ${maxX}, 10)`,
+      //   y: `random(-${maxY}, ${maxY}, 10)`,
+      //   rotation: 'random(-360, 360, 5)',
+      // };
 
-      tl.to(spotRef.current, randomPosition)
-        .to(spotRef.current, randomPosition)
-        .to(spotRef.current, {
-          duration: 1,
-          x: '0',
-          y: '0',
-          ease: 'circ.out',
-        })
-        .to(spotRef.current, {
-          duration: 2,
-          scale: 8,
-        });
+      tl.to(textRef.current, {
+        x: -600,
+        ease: 'none',
+      });
+
+
+      // tl.to(s.hero_bg_spot, randomPosition);
+        // .to(spotRef.current, randomPosition)
+        // .to(spotRef.current, {
+        //   duration: 1,
+        //   x: '0',
+        //   y: '0',
+        //   ease: 'circ.out',
+        // })
+        // .to(spotRef.current, {
+        //   duration: 2,
+        //   scale: 8,
+        // });
       
       return () => gsapCtx.revert();
 
-    }, heroRef);
+    }, pageRef);
   }, []);
 
 
@@ -125,14 +147,19 @@ export default function Home({ featuredProjects }: IHomeProps) {
 
 
   return (
-    <div className="page_home">
+    <div
+      className="page_home"
+      ref={pageRef}
+    >
       <section
-        ref={heroRef}
         className={s.hero}
         data-bg="background"
       >
-        <div className={s.hero_text_container}>
-          <div className={s.hero_wrapper}>
+        {/* <div className={s.hero_text_container}> */}
+          <div
+            className={s.hero_wrapper}
+            ref={heroWrapperRef}
+          >
             <h1>Joe Dalton</h1>
             <h3 ref={textRef}>
               Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
@@ -142,7 +169,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
               className={s.hero_bg_spot}
             />
           </div>
-        </div>
+        {/* </div> */}
       </section>
 
       <section

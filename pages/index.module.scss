@@ -1,9 +1,35 @@
 @use '@/styles/shared/breakpoints' as bp;
 
 .hero {
-  height: clamp(500px, 100vh, 110vh);
+  position: relative;
   display: flex;
   align-items: center;
+  height: 100vh;
+  // height: clamp(500px, 100vh, 110vh);
+
+  @include bp.desktopMedia {
+    // display: block;
+    // height: 180vh;
+    // height: 100vh;
+    padding-bottom: 15vh;
+  }
+}
+
+// .hero_text_container {
+//   width: 100%;
+
+//   // @include bp.desktopMedia {
+//   //   position: sticky;
+//   //   top: 30vh;
+//   //   width: 100vw;
+//   //   overflow: hidden;
+//   // }
+// }
+
+.hero_wrapper {
+  composes: wrapper from '@/styles/shared/layout.module.scss';
+  position: relative;
+  z-index: 1;
 
   h1 {
     position: relative;
@@ -31,30 +57,10 @@
   }
 
   @include bp.desktopMedia {
-    display: block;
-    // height: 180vh;
-    height: 100vh;
-    padding-bottom: 15vh;
-
     h3 {
       white-space: nowrap;
     }
   }
-}
-
-.hero_text_container {
-  width: 100%;
-
-  // @include bp.desktopMedia {
-  //   position: sticky;
-  //   top: 30vh;
-  //   width: 100vw;
-  //   overflow: hidden;
-  // }
-}
-
-.hero_wrapper {
-  composes: wrapper from '@/styles/shared/layout.module.scss';
 }
 
 .hero_bg_spot {
@@ -66,9 +72,9 @@
   height: 10vw;
   width: 10vw;
   transform: translate(-50%, -50%);
-  background-color: var(--green-light);
+  background-color: var(--surface3);
   border-radius: 50%;
-  box-shadow: 0 0 50px 50px var(--background);
+  box-shadow: 0 0 50px 50px var(--surface3);
 
   &:after {
     content: '';
@@ -79,8 +85,8 @@
     height: 80%;
     width: 80%;
     border-radius: 50%;
-    background-color: var(--background);
-    box-shadow: 0 0 50px 50px var(--background);
+    background-color: var(--surface3);
+    box-shadow: 0 0 50px 50px var(--surface3);
   }
 }
 
