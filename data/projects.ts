@@ -107,6 +107,10 @@ import yall2 from './images/work/yall_desktop2.jpg';
 
 import trip1 from './images/work/trump_socialimage.png';
 
+import portfolio1 from './images/work/portfolio/portfolio1.webp';
+import portfolio2 from './images/work/portfolio/portfolio2.webp';
+import portfolio3 from './images/work/portfolio/portfolio3.webp';
+
 
 
 const projects: IProject[] = [
@@ -237,6 +241,32 @@ const projects: IProject[] = [
       start6,
       start7,
       start8,
+    ],
+  },
+
+  {
+    slug: 'portfolio-v2',
+    categories: [categoryMap.interactive, categoryMap.react],
+    title: 'Portfolio v2',
+    subtitle: 'Personal',
+    features: [
+      'Next.js',
+      'React',
+      'Page Transitions',
+      'Vercel',
+    ],
+    duration: '2 weeks',
+    date: 'Spring 2023',
+    about: [
+      'This very site. After using Gatsby.js for the past year in my professional roles, I used this site redesign as an opportunity to try out Next.js as a React site framework, and deployed the site through the cloud host Vercel.',
+      'Technically, the site is a pretty simple React site, with almost no state management or external data, so the main challenges were there design and then creating the interactions (a few of which are still in process).',
+      'The site was designed from scratch within Figma, using Material 3\'s color palette generator to help with the styleguide. After the design felt solid, I began coding, beginning with the site scaffolding, then adding the typography and color variables, and then creating high-level layout components before creating each page.',
+      'Speaking of color variables, I also tested out using CSS Modules in this project, after using Styled Components for the past couple years. To be more specific, I used Sass CSS Modules, mostly just to enable nested styles, and then put every variable within CSS custom properties (i.e. CSS variables). While this is still a CSS-in-JS styling approach, this feels like the most native CSS experience I have used in a JS framework in years.',
+    ],
+    images: [
+      portfolio1,
+      portfolio2,
+      portfolio3,
     ],
   },
 
