@@ -29,13 +29,14 @@ interface IHomeProps {
 export default function Home({ featuredProjects }: IHomeProps) {
 
   const pageRef = useRef<HTMLDivElement | null>(null);
+  const heroSectionRef = useRef<HTMLDivElement | null>(null);
   const heroWrapperRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLHeadingElement | null>(null);
   const spotRef = useRef<HTMLSpanElement | null>(null);
   // const tlRef = useRef(null);
 
   // Init Greensock scroll animation
-  useEffect(() => {
+  useLayoutEffect(() => {
     let gsapCtx = gsap.context(() => {
 
       // TEST
@@ -51,17 +52,23 @@ export default function Home({ featuredProjects }: IHomeProps) {
       //   rotation: 180,
       // });
 
+      // gsap.to(textRef.current, {
+      //   x: -1900,
+      //   duration: 4,
+      // });
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroWrapperRef.current,
-          scrub: true,
-          // pin: true,
-          start: "top bottom",
-          // end: "bottom top",
-          end: "top top",
-        }
-      });
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: heroSectionRef.current,
+      //     pin: true,
+      //     // pinSpacing: false,
+      //     start: "top top",
+      //     end: "50% top",
+      //     // end: "+=300",
+      //     scrub: 1,
+      //     markers: true,
+      //   }
+      // });
 
       // const maxX = (window.innerWidth / 3);
       // const maxY = (window.innerHeight / 3);
@@ -73,9 +80,20 @@ export default function Home({ featuredProjects }: IHomeProps) {
       //   rotation: 'random(-360, 360, 5)',
       // };
 
-      tl.to(textRef.current, {
-        x: -600,
-        ease: 'none',
+      // tl.to(textRef.current, {
+      //   x: -1900,
+      //   // ease: 'none',
+      // });
+
+      gsap.to(textRef.current, {
+        scrollTrigger: {
+          trigger: heroSectionRef.current,
+          scrub: 1,
+          start: "top top",
+          end: "90% top",
+          // markers: true,
+        },
+        x: -1900,
       });
 
 
@@ -154,11 +172,14 @@ export default function Home({ featuredProjects }: IHomeProps) {
       <section
         className={s.hero}
         data-bg="background"
+        ref={heroSectionRef}
       >
-        {/* <div className={s.hero_text_container}> */}
+        <div
+          className={s.hero_text_container}
+          ref={heroWrapperRef}
+        >
           <div
             className={s.hero_wrapper}
-            ref={heroWrapperRef}
           >
             <h1>Joe Dalton</h1>
             <h3 ref={textRef}>
@@ -169,7 +190,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
               className={s.hero_bg_spot}
             />
           </div>
-        {/* </div> */}
+        </div>
       </section>
 
       <section
