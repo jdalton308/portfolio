@@ -1,7 +1,6 @@
 import {
   ReactNode,
   useRef,
-  useState,
 } from 'react';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useRouter } from 'next/router';
@@ -40,12 +39,10 @@ export default function Layout({
 }: ILayoutProps) {
   const router = useRouter();
   const mainRef = useRef(null);
-  const [currentPath, setCurrentPath] = useState('');
 
 
   const afterPageLeave = () => {
     window.scrollTo(0, 0);
-    setCurrentPath(router.pathname);
   }
 
 

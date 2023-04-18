@@ -69,11 +69,11 @@ export default function Work({
       }
     }, 500);
 
-  }, [selectedFilters]);
+  }, [selectedFilters, allProjects]);
 
   useEffect(() => {
     setCanHideList(false);
-  }, [shownProjects, allProjects])
+  }, [shownProjects])
 
 
   return (
