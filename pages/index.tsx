@@ -1,10 +1,8 @@
 import { useLayoutEffect, useEffect, useState, useRef } from 'react';
-// @ts-ignore
-import throttle from 'lodash.throttle';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import projectData, { categoryMap, IProject } from '@/data/projects';
-import { desktopBp } from '@/util';
+import { useIsomorphicLayoutEffect } from '@/util';
 
 import ProjectGrid from '@/components/project-grid';
 import Link from '@/components/my-link';
@@ -25,7 +23,6 @@ interface IHomeProps {
 }
 
 
-
 export default function Home({ featuredProjects }: IHomeProps) {
 
   const pageRef = useRef<HTMLDivElement | null>(null);
@@ -33,142 +30,94 @@ export default function Home({ featuredProjects }: IHomeProps) {
   const heroWrapperRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLHeadingElement | null>(null);
   const spotRef = useRef<HTMLSpanElement | null>(null);
-  // const tlRef = useRef(null);
+  const contactSectionRef = useRef<HTMLSpanElement | null>(null);
 
-  // Init Greensock scroll animation
-  useLayoutEffect(() => {
+  // Scroll Animations
+  //----
+  useIsomorphicLayoutEffect(() => {
     let gsapCtx = gsap.context(() => {
 
-      // TEST
-      // gsap.to(s.hero_bg_spot, {
-      //   scrollTrigger: {
-      //     trigger: s.hero,
-      //     scrub: true,
-      //     pin: true,
-      //     start: "top top",
-      //     end: "+=200%",
-      //   },
-      //   ease: 'none',
-      //   rotation: 180,
-      // });
-
-      // gsap.to(textRef.current, {
-      //   x: -1900,
-      //   duration: 4,
-      // });
-
-      // const tl = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: heroSectionRef.current,
-      //     pin: true,
-      //     // pinSpacing: false,
-      //     start: "top top",
-      //     end: "50% top",
-      //     // end: "+=300",
-      //     scrub: 1,
-      //     markers: true,
-      //   }
-      // });
-
-      // const maxX = (window.innerWidth / 3);
-      // const maxY = (window.innerHeight / 3);
-
-      // const randomPosition = {
-      //   duration: 1,
-      //   x: `random(-${maxX}, ${maxX}, 10)`,
-      //   y: `random(-${maxY}, ${maxY}, 10)`,
-      //   rotation: 'random(-360, 360, 5)',
-      // };
-
-      // tl.to(textRef.current, {
-      //   x: -1900,
-      //   // ease: 'none',
-      // });
-
-      gsap.to(textRef.current, {
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: heroSectionRef.current,
-          scrub: 1,
           start: "top top",
-          end: "90% top",
+          endTrigger: contactSectionRef.current,
+          end: "bottom bottom",
+          scrub: 1,
           // markers: true,
-        },
-        x: -1900,
+        }
       });
 
+      const maxX = (window.innerWidth / 3);
+      const maxY = (window.innerHeight / 3);
 
-      // tl.to(s.hero_bg_spot, randomPosition);
-        // .to(spotRef.current, randomPosition)
-        // .to(spotRef.current, {
-        //   duration: 1,
-        //   x: '0',
-        //   y: '0',
-        //   ease: 'circ.out',
-        // })
-        // .to(spotRef.current, {
-        //   duration: 2,
-        //   scale: 8,
-        // });
-      
+      const randomPosition = {
+        duration: 2,
+        x: `random(-${maxX}, ${maxX}, 10)`,
+        y: `random(-${maxY}, ${maxY}, 10)`,
+        rotation: '+=random(0, 360, 5)',
+      };
+
+      // Background Dot
+      tl.to(spotRef.current, randomPosition)
+        .to(spotRef.current, randomPosition)
+        .to(spotRef.current, {
+          duration: 2,
+          x: '0',
+          y: '0',
+          ease: 'circ.out',
+        })
+        .to(spotRef.current, {
+          duration: 4,
+          scale: 8,
+        }) // 9
+        .to(spotRef.current, {
+          duration: 3,
+          scale: 1,
+        }, 13)
+        .to(spotRef.current, {
+          duration: 2,
+          x: (index, target, targets) => {
+            const contactTitleEl = contactSectionRef.current?.querySelector('#contact');
+            if (contactTitleEl) {
+              const spotBox = target.getBoundingClientRect();
+              const currentX = spotBox.width/2 + spotBox.x;
+
+              const contactTitleBox = contactTitleEl.getBoundingClientRect();
+              const targetX = contactTitleBox.left + (2 * contactTitleBox.height);
+
+              const xDelta = targetX - currentX;
+
+              return xDelta;
+            } else {
+              return -100;
+            }
+          }
+        }, '-=1');
+
+      // Text scroll
+      tl.to(textRef.current, {
+        x: -1900,
+        duration: 6,
+      }, 0);
+
+
       return () => gsapCtx.revert();
 
     }, pageRef);
   }, []);
 
 
-  // const [yScroll, setYScroll] = useState(0);
-
-
-  // const onHeroScroll = useCallback(throttle(() => {
-  //   if (heroRef.current && textRef.current) {
-  //     const scrollPosition = window.scrollY;
-  //     const heroHeight = (heroRef.current?.scrollHeight - (window.innerHeight * 0.8));
-  //     const percentHeroScrolled = scrollPosition / heroHeight;
-
-  //     const textWidth = textRef.current.scrollWidth - 220; // for "Creative developer" text
-
-  //     if (percentHeroScrolled <= 1) {
-  //       setYScroll(percentHeroScrolled * textWidth);
-  //     } else {
-  //       setYScroll(textWidth);
-  //     }
-  //   }
-  // }, 100), [heroRef, textRef]);
-
-
-  // const addScrollListner = useCallback(() => {
-  //   const scrollClean = () => {
-  //     document.removeEventListener('scroll', onHeroScroll);
-  //   };
-
-  //   if (window.innerWidth > desktopBp) {
-  //     scrollClean();
-  //     document.addEventListener('scroll', onHeroScroll);
-
-  //   } else {
-  //     scrollClean();
-  //   }
-
-  //   return scrollClean;
-  // }, [onHeroScroll]);
-
-
-  // useEffect(() => {
-  //   const scrollCleanFn = addScrollListner();
-  //   window.addEventListener('resize', addScrollListner);
-
-  //   return () => {
-  //     window.removeEventListener('resize', addScrollListner);
-  //     scrollCleanFn();
-  //   }
-  // }, [addScrollListner]);
-
-
   return (
     <div
-      className="page_home"
+      className={s.page_home}
       ref={pageRef}
     >
+      <span
+        ref={spotRef}
+        className={s.hero_bg_spot}
+      />
+
       <section
         className={s.hero}
         data-bg="background"
@@ -185,10 +134,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
             <h3 ref={textRef}>
               Front-end Development. User Interface Development. Interaction Design. Motion Design. Front-end Architecture. Component Library Development. Prototype Development. Headless Architecture. <strong>Creative Developer.</strong>
             </h3>
-            <span
-              ref={spotRef}
-              className={s.hero_bg_spot}
-            />
+
           </div>
         </div>
       </section>
@@ -215,6 +161,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
       <section
         className={s.section_contact}
         data-bg="background"
+        ref={contactSectionRef}
       >
         <div className={ls.wrapper}>
           <h2 id="contact">
@@ -265,6 +212,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
           </div>
         </div>
       </section>
+
     </div>
   )
 }
