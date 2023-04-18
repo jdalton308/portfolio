@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import projectData, { categoryMap, IProject } from '@/data/projects';
@@ -77,7 +77,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
         }, 13)
         .to(spotRef.current, {
           duration: 2,
-          x: (index, target, targets) => {
+          x: (index, target) => {
             const contactTitleEl = contactSectionRef.current?.querySelector('#contact');
             if (contactTitleEl) {
               const spotBox = target.getBoundingClientRect();

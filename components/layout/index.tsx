@@ -2,16 +2,11 @@ import {
   ReactNode,
   useRef,
   useState,
-  useEffect,
-  useCallback,
 } from 'react';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
-// @ts-ignore
-import throttle from 'lodash.throttle';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
-import { desktopBp } from '@/util';
 
 import Navigation from '../navigation';
 import Footer from '../footer';
@@ -20,12 +15,6 @@ import s from './layout.module.scss';
 
 interface ILayoutProps {
   children: ReactNode;
-}
-
-interface ISectionObj {
-  top: number;
-  el: HTMLElement;
-  bg: string | undefined;
 }
 
 
@@ -58,86 +47,6 @@ export default function Layout({
     window.scrollTo(0, 0);
     setCurrentPath(router.pathname);
   }
-
-  // // Scroll watcher for BG
-  // //-----
-  // const [sectionStops, setSectionStops] = useState<ISectionObj[]>([]);
-  // const [backgroundColor, setBackgroundColor] = useState('background');
-
-
-  // const onSectionScroll = useCallback(throttle(() => {
-  //   const { scrollY } = window;
-
-  //   const currentSection = sectionStops.find((sectionObj, i) => {
-  //     const nextSection = sectionStops[i + 1];
-  //     if (nextSection) {
-  //       return (
-  //         (nextSection.top > scrollY) &&
-  //         (sectionObj.top < scrollY)
-  //       );
-  //     } else {
-  //       return true;
-  //     }
-  //   });
-
-  //   if (currentSection && currentSection.bg) {
-  //     setBackgroundColor(currentSection.bg);
-  //   } else {
-  //     setBackgroundColor('background');
-  //   }
-  // }, 100), [sectionStops]);
-
-
-  // const findSectionStops = useCallback(throttle(() => {
-  //   const sectionEls = document.querySelectorAll('section');
-  //   const sectionElsArray = [...sectionEls];
-
-  //   const newStops = sectionElsArray.map((el) => ({
-  //     top: el.offsetTop - (window.innerHeight * 0.5),
-  //     el: el,
-  //     bg: el.dataset?.bg,
-  //   }));
-
-  //   setSectionStops(newStops);
-  // }, 250), []);
-
-
-  // const initScrollWatch = useCallback(() => {
-  //   if (window.innerWidth > desktopBp) {
-  //     document.addEventListener('scroll', onSectionScroll);
-
-  //     const cleanFn = () => {
-  //       document.removeEventListener('scroll', onSectionScroll);
-  //     }
-  //     return cleanFn;
-  //   }
-  //   return () => {};
-  // }, [onSectionScroll]);
-
-
-  // useEffect(() => {
-  //   findSectionStops();
-  //   window.addEventListener('resize', findSectionStops);
-
-  //   return () => {
-  //     window.removeEventListener('resize', findSectionStops);
-  //   }
-  // }, [findSectionStops, currentPath]);
-
-
-  // useEffect(() => {
-  //   const scrollCleanup = initScrollWatch();
-  //   window.addEventListener('resize', initScrollWatch);
-
-  //   return () => {
-  //     scrollCleanup();
-  //     window.removeEventListener('resize', initScrollWatch);
-  //   }
-  // }, [initScrollWatch]);
-
-
-  // Eng bg scroll
-  //-----
 
 
   return (

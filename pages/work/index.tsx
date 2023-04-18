@@ -73,7 +73,7 @@ export default function Work({
 
   useEffect(() => {
     setCanHideList(false);
-  }, [shownProjects])
+  }, [shownProjects, allProjects])
 
 
   return (
