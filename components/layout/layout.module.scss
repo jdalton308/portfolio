@@ -1,6 +1,12 @@
+@use '@/styles/shared/breakpoints' as bp;
 
 .layout_main {
+  padding-top: 80px;
   transition: background-color 0.4s;
+
+  @include bp.desktopMedia {
+    padding-top: 0;
+  }
 }
 
 // Page Transitions

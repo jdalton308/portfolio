@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import projectData, { categoryMap, IProject } from '@/data/projects';
-import { useIsomorphicLayoutEffect } from '@/util';
+import { useIsomorphicLayoutEffect, desktopBp } from '@/util';
 
 import ProjectGrid from '@/components/project-grid';
 import Link from '@/components/my-link';
@@ -14,6 +14,7 @@ import IconLinkedin from '@/components/icons/linkedin';
 import s from './index.module.scss';
 import ls from '@/styles/shared/layout.module.scss';
 import buttons from '@/styles/shared/buttons.module.scss';
+import { useIsWindowSmaller } from '@/hooks/useIsWindowSmaller';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,80 +33,93 @@ export default function Home({ featuredProjects }: IHomeProps) {
   const spotRef = useRef<HTMLSpanElement | null>(null);
   const contactSectionRef = useRef<HTMLSpanElement | null>(null);
 
+  const isMobile = useIsWindowSmaller(desktopBp);
+
+  console.log('isMobile: ', isMobile);
+
   // Scroll Animations
   //----
   useIsomorphicLayoutEffect(() => {
-    let gsapCtx = gsap.context(() => {
+    console.log('layout effect running...')
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroSectionRef.current,
-          start: "top top",
-          endTrigger: contactSectionRef.current,
-          end: "bottom bottom",
-          scrub: 1,
-          // markers: true,
-        }
-      });
+    let gsapCtx: any;
 
-      const maxX = (window.innerWidth / 3);
-      const maxY = (window.innerHeight / 3);
+    if (!isMobile) {
+      gsapCtx = gsap.context(() => {
 
-      const randomPosition = {
-        duration: 2,
-        x: `random(-${maxX}, ${maxX}, 10)`,
-        y: `random(-${maxY}, ${maxY}, 10)`,
-        rotation: '+=random(0, 360, 5)',
-      };
-
-      // Background Dot
-      tl.to(spotRef.current, randomPosition)
-        .to(spotRef.current, randomPosition)
-        .to(spotRef.current, {
-          duration: 2,
-          x: '0',
-          y: '0',
-          ease: 'circ.out',
-        })
-        .to(spotRef.current, {
-          duration: 4,
-          scale: 8,
-        }) // 9
-        .to(spotRef.current, {
-          duration: 3,
-          scale: 1,
-        }, 13)
-        .to(spotRef.current, {
-          duration: 2,
-          x: (index, target) => {
-            const contactTitleEl = contactSectionRef.current?.querySelector('#contact');
-            if (contactTitleEl) {
-              const spotBox = target.getBoundingClientRect();
-              const currentX = spotBox.width/2 + spotBox.x;
-
-              const contactTitleBox = contactTitleEl.getBoundingClientRect();
-              const targetX = contactTitleBox.left + (2 * contactTitleBox.height);
-
-              const xDelta = targetX - currentX;
-
-              return xDelta;
-            } else {
-              return -100;
-            }
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroSectionRef.current,
+            start: "top top",
+            endTrigger: contactSectionRef.current,
+            end: "bottom bottom",
+            scrub: 1,
+            // markers: true,
           }
-        }, '-=1');
+        });
 
-      // Text scroll
-      tl.to(textRef.current, {
-        x: -1900,
-        duration: 6,
-      }, 0);
+        const maxX = (window.innerWidth / 3);
+        const maxY = (window.innerHeight / 3);
 
+        const randomPosition = {
+          duration: 2,
+          x: `random(-${maxX}, ${maxX}, 10)`,
+          y: `random(-${maxY}, ${maxY}, 10)`,
+          rotation: '+=random(0, 360, 5)',
+        };
 
-      return () => gsapCtx.revert();
+        // Background Dot
+        tl.to(spotRef.current, randomPosition)
+          .to(spotRef.current, randomPosition)
+          .to(spotRef.current, {
+            duration: 2,
+            x: '0',
+            y: '0',
+            ease: 'circ.out',
+          })
+          .to(spotRef.current, {
+            duration: 4,
+            scale: 8,
+          }) // 9
+          .to(spotRef.current, {
+            duration: 3,
+            scale: 1,
+          }, 13)
+          .to(spotRef.current, {
+            duration: 2,
+            x: (index, target) => {
+              const contactTitleEl = contactSectionRef.current?.querySelector('#contact');
+              if (contactTitleEl) {
+                const spotBox = target.getBoundingClientRect();
+                const currentX = spotBox.width/2 + spotBox.x;
 
-    }, pageRef);
-  }, []);
+                const contactTitleBox = contactTitleEl.getBoundingClientRect();
+                const targetX = contactTitleBox.left + (2 * contactTitleBox.height);
+
+                const xDelta = targetX - currentX;
+
+                return xDelta;
+              } else {
+                return -100;
+              }
+            }
+          }, '-=1');
+
+        // Text scroll
+        tl.to(textRef.current, {
+          x: -1900,
+          duration: 6,
+        }, 0);
+      }, pageRef);
+    }
+
+    return () => {
+      if (gsapCtx) {
+        gsapCtx.revert();
+      }
+    }
+
+  }, [isMobile]);
 
 
   return (
