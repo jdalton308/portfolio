@@ -35,13 +35,9 @@ export default function Home({ featuredProjects }: IHomeProps) {
 
   const isMobile = useIsWindowSmaller(desktopBp);
 
-  console.log('isMobile: ', isMobile);
-
   // Scroll Animations
   //----
   useIsomorphicLayoutEffect(() => {
-    console.log('layout effect running...')
-
     let gsapCtx: any;
 
     if (!isMobile) {

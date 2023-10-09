@@ -1,20 +1,20 @@
 import {
-  ReactNode,
+  // ReactNode,
   useRef,
 } from 'react';
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { Playfair_Display, Source_Sans_Pro  } from '@next/font/google';
+import { Playfair_Display, Source_Sans_3  } from 'next/font/google';
 
 import Navigation from '../navigation';
 import Footer from '../footer';
 import s from './layout.module.scss';
 
 
-interface ILayoutProps {
-  children: ReactNode;
-}
+// interface ILayoutProps {
+//   children: ReactNode;
+// }
 
 
 const playfairDisplay = Playfair_Display({
@@ -24,7 +24,7 @@ const playfairDisplay = Playfair_Display({
   variable: '--playfair-font',
 });
 
-const sourceSansPro = Source_Sans_Pro({
+const sourceSansPro = Source_Sans_3({
   weight: '400',
   subsets: ['latin'],
   style: 'normal',
@@ -36,7 +36,7 @@ const sourceSansPro = Source_Sans_Pro({
 
 export default function Layout({
   children,
-}: ILayoutProps) {
+}) {
   const router = useRouter();
   const mainRef = useRef(null);
 
@@ -51,7 +51,7 @@ export default function Layout({
       <Head>
         <title>Joe Dalton | Front-end Portfolio</title>
 
-        <meta name="description" content="Joe Dalton web development, available for freelance and contract web developemnt, JavaScript development, Front-end development, single-page app development, React development, and Vue projects. Located in Denver, Colorado." />
+        <meta name="description" content="Joe Dalton, an independent web and JavaScript software developer, based in Denver, Colorado, and available for freelance and contract projects. I specialize in JavaScript development, Front-end development, single-page app development, React, and Vue projects." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#006B56" />
