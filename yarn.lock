@@ -341,6 +341,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/analytics@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@vercel/analytics@npm:1.1.2"
+  dependencies:
+    server-only: ^0.0.1
+  checksum: 7338f44b19dd2813e560019c4735308d76c273bfbbe4dbf909be8795f6cdcd2120591c27b026c0fdcae2d3148f7ed60b3f1b0417ce017eb5ee515535f2864f4b
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^1.0.0":
   version: 1.1.1
   resolution: "abbrev@npm:1.1.1"
@@ -3025,6 +3034,7 @@ __metadata:
     "@types/react": 18.2.0
     "@types/react-dom": 18.2.0
     "@types/react-transition-group": 4.4.5
+    "@vercel/analytics": ^1.1.2
     eslint: 8.34.0
     eslint-config-next: 13.1.6
     eslint-plugin-react: ^7.32.2
@@ -3417,6 +3427,13 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
+  languageName: node
+  linkType: hard
+
+"server-only@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "server-only@npm:0.0.1"
+  checksum: c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
   languageName: node
   linkType: hard
 
