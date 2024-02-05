@@ -76,6 +76,7 @@ export default function Home({ featuredProjects }: IHomeProps) {
           .to(spotRef.current, {
             duration: 4,
             scale: 8,
+            color: '#A8CBE2',
           }) // 9
           .to(spotRef.current, {
             duration: 3,

@@ -81,9 +81,10 @@
   height: 10vw;
   width: 10vw;
   transform: translate(-50%, -50%);
-  background-color: var(--surface3);
+  color: var(--surface3);
+  background-color: currentColor;
   border-radius: 50%;
-  box-shadow: 0 0 50px 50px var(--surface3);
+  box-shadow: 0 0 50px 50px currentColor;
   pointer-events: none;
 
   &:after {
@@ -95,8 +96,8 @@
     height: 80%;
     width: 80%;
     border-radius: 50%;
-    background-color: var(--surface3);
-    box-shadow: 0 0 50px 50px var(--surface3);
+    background-color: currentColor;
+    box-shadow: 0 0 50px 50px currentColor;
   }
 }
 
